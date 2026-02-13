@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Trip Helper - AI-powered travel companion with OCR, translation, and itinerary management">
+    <title>Trip Helper - Smart Travel Companion</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0EA5E9',
+                        secondary: '#38BDF8',
+                        accent: '#F97316',
+                        background: '#F0F9FF',
+                        text: '#0C4A6E',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .soft-shadow {
+            box-shadow: 8px 8px 16px #d1e8f5, -8px -8px 16px #ffffff;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%);
+        }
+    </style>
+</head>
+<body class="bg-background antialiased">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-primary/10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-primary">Trip Helper</h1>
+                </div>
+                <div class="flex items-center gap-4">
+                    <nav class="hidden md:flex space-x-8">
+                        <a href="#features" class="text-text/70 hover:text-primary transition-colors duration-200 font-medium">Features</a>
+                        <a href="#how-it-works" class="text-text/70 hover:text-primary transition-colors duration-200 font-medium">How It Works</a>
+                        <a href="#contact" class="text-text/70 hover:text-primary transition-colors duration-200 font-medium">Contact</a>
+                    </nav>
+
+                    <a href="./index.ko.html" aria-label="Switch to Korean" class="inline-flex items-center gap-2 text-text/70 hover:text-primary transition-colors duration-200 font-medium">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                        </svg>
+                        <span class="text-sm">KO</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        <!-- Hero Section -->
+        <section class="py-20 sm:py-32 gradient-bg">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="text-white">
+                        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+                            Your AI Travel<br>Companion
+                        </h2>
+                        <p class="text-xl sm:text-2xl text-white/90 mb-8 font-light">
+                            Plan, navigate, and experience travel like never before with intelligent AI assistance
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="mailto:iyu974895@gmail.com"
+                               class="inline-block bg-white hover:bg-gray-100 text-primary font-semibold px-8 py-4 rounded-lg transition-all duration-200 hover:shadow-xl text-center focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary cursor-pointer">
+                                Get Started
+                            </a>
+                            <a href="#features"
+                               class="inline-block bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 backdrop-blur-sm border border-white/20 text-center cursor-pointer">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20">
+                        <svg class="w-full h-auto text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-text mb-4">Powerful Features</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                    <p class="text-lg text-text/70 max-w-2xl mx-auto">
+                        Everything you need for a perfect journey
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-background rounded-2xl p-8 soft-shadow hover:translate-y-[-4px] transition-all duration-300 cursor-pointer">
+                        <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-text mb-3">Smart Itinerary</h3>
+                        <p class="text-text/70">AI-powered trip planning with personalized recommendations and real-time updates</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="bg-background rounded-2xl p-8 soft-shadow hover:translate-y-[-4px] transition-all duration-300 cursor-pointer">
+                        <div class="w-14 h-14 bg-secondary/10 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-text mb-3">OCR Text Recognition</h3>
+                        <p class="text-text/70">Scan and extract text from signs, menus, and documents instantly with Google ML Kit</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="bg-background rounded-2xl p-8 soft-shadow hover:translate-y-[-4px] transition-all duration-300 cursor-pointer">
+                        <div class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-text mb-3">Real-time Translation</h3>
+                        <p class="text-text/70">Break language barriers with instant translation powered by Google ML Kit</p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="bg-background rounded-2xl p-8 soft-shadow hover:translate-y-[-4px] transition-all duration-300 cursor-pointer">
+                        <div class="w-14 h-14 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-text mb-3">Interactive Maps</h3>
+                        <p class="text-text/70">Navigate with Google Maps integration, route planning, and location tracking</p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="bg-background rounded-2xl p-8 soft-shadow hover:translate-y-[-4px] transition-all duration-300 cursor-pointer">
+                        <div class="w-14 h-14 bg-pink-500/10 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-text mb-3">Photo Gallery</h3>
+                        <p class="text-text/70">Organize and cherish your travel memories with a beautiful staggered grid gallery</p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="bg-background rounded-2xl p-8 soft-shadow hover:translate-y-[-4px] transition-all duration-300 cursor-pointer">
+                        <div class="w-14 h-14 bg-green-500/10 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-text mb-3">Local Notifications</h3>
+                        <p class="text-text/70">Never miss a moment with offline itinerary reminders and schedule alerts</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="py-20 bg-background">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-text mb-4">How It Works</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                    <p class="text-lg text-text/70 max-w-2xl mx-auto">
+                        Your journey, simplified in three steps
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <!-- Step 1 -->
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
+                            1
+                        </div>
+                        <h3 class="text-xl font-semibold text-text mb-3">Plan Your Trip</h3>
+                        <p class="text-text/70">Create your itinerary with AI-powered suggestions and customize every detail</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
+                            2
+                        </div>
+                        <h3 class="text-xl font-semibold text-text mb-3">Navigate & Explore</h3>
+                        <p class="text-text/70">Use OCR, translation, and maps to discover and understand your surroundings</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
+                            3
+                        </div>
+                        <h3 class="text-xl font-semibold text-text mb-3">Capture Memories</h3>
+                        <p class="text-text/70">Save and organize your photos, creating a beautiful travel story</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-text mb-4">Get in Touch</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                </div>
+
+                <div class="bg-background rounded-2xl p-8 sm:p-12 text-center soft-shadow">
+                    <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-text mb-4">Contact Us</h3>
+                    <a href="mailto:iyu974895@gmail.com" class="text-primary hover:text-secondary transition-colors duration-200 text-lg font-medium">
+                        iyu974895@gmail.com
+                    </a>
+                    <p class="text-text/70 mt-6">
+                        For support, feedback, or partnership inquiries
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20 gradient-bg">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">
+                    Start Your Next Adventure
+                </h2>
+                <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                    Download Trip Helper and experience travel with AI-powered intelligence
+                </p>
+                <a href="mailto:iyu974895@gmail.com"
+                   class="inline-block bg-white hover:bg-gray-100 text-primary font-semibold px-8 py-4 rounded-lg transition-all duration-200 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary cursor-pointer">
+                    Get Started Today
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-text py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-white/70 text-sm">
+                    © 2024 Trip Helper by Dcode. All rights reserved.
+                </p>
+                <p class="text-white/50 text-sm mt-2">
+                    AI-Powered Travel Companion
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
