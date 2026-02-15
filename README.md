@@ -2,6 +2,11 @@
 
 Professional landing pages for Dcode company and mobile apps - Apple Developer Organization application.
 
+## 📂 Project Location
+
+**Path**: `~/seunghan/domain/dcode/landing`
+**Repository**: https://github.com/seunghan91/dcode-landing.git
+
 ## 📱 Projects
 
 ### 1. **Dcode (Main)** - `/index.html`
@@ -65,11 +70,9 @@ https://app.netlify.com/drop
 ### Method 2: Git 연동
 
 ```bash
-cd dcode-landing
-git init
-git add .
-git commit -m "Add all Dcode landing pages"
-gh repo create dcode-landing --public --source=. --push
+cd ~/seunghan/domain/dcode/landing
+git status
+# Repository is already initialized and synced with GitHub
 ```
 
 Netlify에서:
@@ -85,7 +88,7 @@ Netlify에서:
 npm install -g netlify-cli
 
 # 각 프로젝트별 배포
-cd dcode-landing
+cd ~/seunghan/domain/dcode/landing
 netlify deploy --prod
 
 cd mbti-luck
@@ -166,8 +169,54 @@ netlify deploy --prod
 
 질문이나 수정 요청이 있으시면 연락주세요.
 
+## 🌐 Deployment Configuration
+
+### Current Setup
+- **Method**: Netlify Drop (manual drag-and-drop)
+- **No build process**: Static HTML files only
+- **No configuration files**: No netlify.toml or vercel.json needed
+
+### Deployment Strategy
+Each landing page is deployed independently as a separate Netlify site:
+- **Dcode Main**: `index.html` → Company website
+- **MBTI Luck**: `mbti-luck/index.html` → App landing page
+- **UNMASK**: `unmask/index.html` → App landing page
+- **Trip Helper**: `trip-helper/index.html` → App landing page
+
+### Deployment Checklist
+1. Open https://app.netlify.com/drop
+2. Drag the appropriate HTML file
+3. Note the generated URL
+4. Update Apple Developer application with URL
+5. Configure custom domain (optional)
+
+### Future Improvements
+If automated deployment is needed:
+```toml
+# netlify.toml (future)
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/mbti-luck/*"
+  to = "/mbti-luck/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/unmask/*"
+  to = "/unmask/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/trip-helper/*"
+  to = "/trip-helper/index.html"
+  status = 200
+```
+
 ---
 
 **Created**: February 2024
+**Updated**: February 2026
+**Location**: `~/seunghan/domain/dcode/landing`
 **Design System**: ui-ux-pro-max
 **Purpose**: Apple Developer Organization Application
