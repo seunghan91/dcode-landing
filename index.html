@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dcode - Professional Mobile App Development & Digital Solutions">
-    <title>Dcode - Mobile App Development</title>
+    <meta name="description" content="Dcode Labs - 혁신적인 모바일 앱을 설계하고 개발하는 크리에이티브 스튜디오">
+    <title>Dcode Labs - Creative Mobile App Studio</title>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts - Space Grotesk + DM Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,13 +19,16 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#171717',
-                        secondary: '#404040',
-                        accent: '#D4AF37',
+                        primary: '#F97316',      // Vibrant Orange
+                        secondary: '#FB923C',    // Light Orange
+                        cta: '#2563EB',          // Trust Blue
+                        background: '#FFF7ED',   // Warm White
+                        text: '#9A3412',         // Deep Orange Brown
+                        dark: '#1F2937',         // Dark Gray
                     },
                     fontFamily: {
-                        heading: ['Poppins', 'sans-serif'],
-                        body: ['Open Sans', 'sans-serif'],
+                        heading: ['Space Grotesk', 'sans-serif'],
+                        body: ['DM Sans', 'sans-serif'],
                     }
                 }
             }
@@ -34,436 +37,432 @@
 
     <style>
         body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'DM Sans', sans-serif;
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* Mobile menu animation */
-        #mobile-menu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-in-out;
-        }
-
-        #mobile-menu:not(.hidden) {
-            max-height: 500px;
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
+        }
 
-            #mobile-menu {
-                transition: none;
-            }
+        .project-card {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .gradient-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: blob 20s infinite;
+        }
+
+        @keyframes blob {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(20px, -50px) scale(1.1); }
+            50% { transform: translate(-20px, 20px) scale(0.9); }
+            75% { transform: translate(50px, 50px) scale(1.05); }
+        }
+
+        .scroll-snap {
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .scroll-snap > * {
+            scroll-snap-align: start;
         }
     </style>
 </head>
-<body class="bg-white text-primary antialiased">
-    <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<body class="bg-white text-dark antialiased">
+    <!-- Floating Navbar -->
+    <nav class="fixed top-4 left-4 right-4 z-50 bg-white/90 backdrop-blur-md rounded-2xl shadow-lg border border-gray-200">
+        <div class="max-w-7xl mx-auto px-6">
             <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <h1 class="text-2xl font-bold font-heading text-primary">Dcode</h1>
-                </div>
-                <div class="flex items-center gap-4">
-                    <!-- Desktop Navigation -->
-                    <nav class="hidden md:flex space-x-8">
-                        <a href="#about" class="text-secondary hover:text-primary transition-colors duration-200 font-medium">About</a>
-                        <a href="#services" class="text-secondary hover:text-primary transition-colors duration-200 font-medium">Services</a>
-                        <a href="#team" class="text-secondary hover:text-primary transition-colors duration-200 font-medium">Team</a>
-                        <a href="#contact" class="text-secondary hover:text-primary transition-colors duration-200 font-medium">Contact</a>
-                    </nav>
-
-                    <!-- Language Switcher -->
-                    <a href="./index.ko.html" aria-label="Switch to Korean" class="inline-flex items-center gap-2 text-secondary hover:text-primary transition-colors duration-200 font-medium">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
                         </svg>
-                        <span class="text-sm">KO</span>
+                    </div>
+                    <span class="text-xl font-bold font-heading text-dark">Dcode Labs</span>
+                </div>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#projects" class="text-dark hover:text-primary transition-colors duration-200 font-medium cursor-pointer">Projects</a>
+                    <a href="#about" class="text-dark hover:text-primary transition-colors duration-200 font-medium cursor-pointer">About</a>
+                    <a href="#contact" class="px-6 py-2.5 bg-cta text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors duration-200 cursor-pointer">
+                        Contact
                     </a>
-
-                    <!-- Mobile Menu Button -->
-                    <button
-                        id="mobile-menu-button"
-                        type="button"
-                        class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-secondary hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent transition-colors duration-200"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation menu">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
                 </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 cursor-pointer" aria-label="Toggle menu">
+                    <svg class="w-6 h-6 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
         </div>
+    </nav>
 
-        <!-- Mobile Menu Panel -->
-        <div
-            id="mobile-menu"
-            class="md:hidden hidden"
-            role="navigation"
-            aria-label="Mobile navigation">
-            <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-gray-100 shadow-lg">
-                <a href="#about" class="mobile-menu-link block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50 transition-colors duration-200">About</a>
-                <a href="#services" class="mobile-menu-link block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50 transition-colors duration-200">Services</a>
-                <a href="#team" class="mobile-menu-link block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50 transition-colors duration-200">Team</a>
-                <a href="#contact" class="mobile-menu-link block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50 transition-colors duration-200">Contact</a>
-            </div>
-        </div>
-    </header>
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center overflow-hidden pt-24 pb-20">
+        <!-- Animated Background Blobs -->
+        <div class="gradient-blob w-96 h-96 bg-primary top-1/4 left-1/4"></div>
+        <div class="gradient-blob w-80 h-80 bg-cta bottom-1/4 right-1/4"></div>
+        <div class="gradient-blob w-72 h-72 bg-secondary top-1/2 right-1/3"></div>
 
-    <!-- Main Content -->
-    <main class="pt-16">
-        <!-- Hero Section -->
-        <section class="py-20 sm:py-32 bg-white">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-primary mb-6">
-                    Professional Mobile App Development
-                </h2>
-                <p class="text-xl sm:text-2xl text-secondary mb-12 font-light max-w-2xl mx-auto">
-                    Building innovative mobile solutions for iOS and Android platforms
+        <div class="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-10">
+            <div class="max-w-4xl">
+                <!-- Badge -->
+                <div class="inline-flex items-center px-4 py-2 bg-primary/10 rounded-full mb-8">
+                    <span class="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse"></span>
+                    <span class="text-sm font-semibold text-primary">모바일 앱 전문 스튜디오</span>
+                </div>
+
+                <!-- Headline -->
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold font-heading text-dark mb-6 leading-tight">
+                    일상을 바꾸는<br/>
+                    <span class="bg-gradient-to-r from-primary via-secondary to-cta bg-clip-text text-transparent">
+                        혁신적인 앱
+                    </span>을<br/>
+                    만듭니다
+                </h1>
+
+                <!-- Description -->
+                <p class="text-xl sm:text-2xl text-gray-600 mb-12 font-body leading-relaxed max-w-2xl">
+                    사용자 경험을 최우선으로 생각하는 크리에이티브 스튜디오.
+                    AI와 디자인의 완벽한 조화를 추구합니다.
                 </p>
 
-                <!-- Key Benefits -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 max-w-3xl mx-auto">
-                    <div class="text-center">
-                        <div class="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="font-semibold text-primary mb-2">Cross-Platform</h3>
-                        <p class="text-secondary text-sm">iOS & Android development expertise</p>
-                    </div>
+                <!-- CTAs -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#projects" class="inline-flex items-center justify-center px-8 py-4 bg-dark text-white rounded-xl font-bold text-lg hover:bg-gray-800 transition-colors duration-200 shadow-lg hover:shadow-xl cursor-pointer">
+                        프로젝트 보기
+                        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                    </a>
+                    <a href="#about" class="inline-flex items-center justify-center px-8 py-4 bg-white border-2 border-dark text-dark rounded-xl font-bold text-lg hover:bg-dark hover:text-white transition-all duration-200 cursor-pointer">
+                        더 알아보기
+                    </a>
+                </div>
 
-                    <div class="text-center">
-                        <div class="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="font-semibold text-primary mb-2">High Performance</h3>
-                        <p class="text-secondary text-sm">Optimized for speed and efficiency</p>
+                <!-- Stats -->
+                <div class="grid grid-cols-3 gap-8 mt-16 max-w-xl">
+                    <div>
+                        <div class="text-4xl font-bold font-heading text-primary">3+</div>
+                        <div class="text-sm text-gray-600 mt-1">프로젝트</div>
                     </div>
-
-                    <div class="text-center">
-                        <div class="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="font-semibold text-primary mb-2">Secure & Reliable</h3>
-                        <p class="text-secondary text-sm">Enterprise-grade security standards</p>
+                    <div>
+                        <div class="text-4xl font-bold font-heading text-primary">2K+</div>
+                        <div class="text-sm text-gray-600 mt-1">다운로드</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold font-heading text-primary">4.7</div>
+                        <div class="text-sm text-gray-600 mt-1">평점</div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- About Section -->
-        <section id="about" class="py-20 bg-gray-50">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl sm:text-4xl font-bold font-heading text-primary mb-4">About Dcode</h2>
-                    <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
-                    <p class="text-lg text-secondary max-w-2xl mx-auto">
-                        Dcode is a professional software development company specializing in mobile application development.
-                        We deliver high-quality, innovative solutions for iOS and Android platforms.
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-background">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-bold font-heading text-dark mb-4">
+                    우리의 프로젝트
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    각각의 프로젝트는 독특한 문제를 해결하고 새로운 경험을 제공합니다
+                </p>
+            </div>
+
+            <!-- Project Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- UNMASK -->
+                <a href="/unmask/" class="project-card group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border-2 border-gray-100 cursor-pointer">
+                    <!-- Image -->
+                    <div class="relative h-64 bg-gradient-to-br from-gray-900 to-gray-700 overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-24 h-24 text-white opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <!-- Platform Badge -->
+                        <div class="absolute top-4 right-4 px-3 py-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-bold rounded-lg">
+                            iOS · Android
+                        </div>
+                        <!-- Category -->
+                        <div class="absolute bottom-4 left-4 px-3 py-1 bg-black/50 backdrop-blur-sm text-white text-xs font-semibold rounded-lg">
+                            Photography
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold font-heading text-dark mb-3 group-hover:text-primary transition-colors">
+                            UNMASK
+                        </h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            필름 네거티브를 디지털 사진으로 변환하는 AI 기반 필름 스캔 앱
+                        </p>
+
+                        <!-- Tags -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-lg">AI</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-lg">사진</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-lg">필름</span>
+                        </div>
+
+                        <!-- CTA -->
+                        <div class="flex items-center text-primary font-bold group-hover:gap-2 transition-all">
+                            <span>자세히 보기</span>
+                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- MBTI Luck -->
+                <a href="/mbti-luck/" class="project-card group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border-2 border-gray-100 cursor-pointer">
+                    <!-- Image -->
+                    <div class="relative h-64 bg-gradient-to-br from-purple-600 via-violet-500 to-blue-500 overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <!-- Crystal ball icon matching MBTI Luck project page -->
+                            <svg class="w-24 h-24 text-white opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="9" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M12 3v18M3 12h18" stroke-width="1.5" opacity="0.5"/>
+                                <circle cx="12" cy="12" r="3" fill="currentColor" opacity="0.3"/>
+                            </svg>
+                        </div>
+                        <div class="absolute top-4 right-4 px-3 py-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-bold rounded-lg">
+                            iOS · Android
+                        </div>
+                        <div class="absolute bottom-4 left-4 px-3 py-1 bg-purple-900/50 backdrop-blur-sm text-white text-xs font-semibold rounded-lg">
+                            Lifestyle
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold font-heading text-dark mb-3 group-hover:text-purple-600 transition-colors">
+                            MBTI Luck
+                        </h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            MBTI와 사주를 결합한 AI 운세 상담 앱. 나만의 맞춤형 운세를 확인하세요
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs font-semibold rounded-lg">AI</span>
+                            <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs font-semibold rounded-lg">MBTI</span>
+                            <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs font-semibold rounded-lg">운세</span>
+                        </div>
+
+                        <div class="flex items-center text-purple-600 font-bold group-hover:gap-2 transition-all">
+                            <span>자세히 보기</span>
+                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Trip Helper -->
+                <a href="/trip-helper/" class="project-card group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border-2 border-gray-100 cursor-pointer">
+                    <div class="relative h-64 bg-gradient-to-br from-cyan-500 via-blue-500 to-teal-400 overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-24 h-24 text-white opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="absolute top-4 right-4 px-3 py-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-bold rounded-lg">
+                            iOS · Android
+                        </div>
+                        <div class="absolute bottom-4 left-4 px-3 py-1 bg-blue-900/50 backdrop-blur-sm text-white text-xs font-semibold rounded-lg">
+                            Travel
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold font-heading text-dark mb-3 group-hover:text-cyan-600 transition-colors">
+                            Trip Helper
+                        </h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            AI 기반 여행 동반자. 맞춤형 여행 계획과 실시간 추천을 제공합니다
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-cyan-50 text-cyan-700 text-xs font-semibold rounded-lg">AI</span>
+                            <span class="px-3 py-1 bg-cyan-50 text-cyan-700 text-xs font-semibold rounded-lg">여행</span>
+                            <span class="px-3 py-1 bg-cyan-50 text-cyan-700 text-xs font-semibold rounded-lg">추천</span>
+                        </div>
+
+                        <div class="flex items-center text-cyan-600 font-bold group-hover:gap-2 transition-all">
+                            <span>자세히 보기</span>
+                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl sm:text-5xl font-bold font-heading text-dark mb-6">
+                        Dcode Labs는
+                    </h2>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        사용자 경험을 최우선으로 생각하는 모바일 앱 개발 스튜디오입니다.
+                        혁신적인 기술과 창의적인 아이디어를 결합하여 일상을 더 편리하고
+                        즐겁게 만드는 앱을 개발합니다.
+                    </p>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        우리는 단순히 앱을 만드는 것이 아니라, 사용자의 삶에 의미 있는
+                        변화를 가져오는 경험을 설계합니다.
+                    </p>
+
+                    <!-- Values -->
+                    <div class="grid grid-cols-2 gap-4 mt-8">
+                        <div class="p-4 bg-primary/5 rounded-2xl">
+                            <div class="text-3xl mb-2">🚀</div>
+                            <h4 class="font-bold text-dark mb-1">혁신</h4>
+                            <p class="text-sm text-gray-600">최신 기술 적용</p>
+                        </div>
+                        <div class="p-4 bg-cta/5 rounded-2xl">
+                            <div class="text-3xl mb-2">👥</div>
+                            <h4 class="font-bold text-dark mb-1">사용자 중심</h4>
+                            <p class="text-sm text-gray-600">UX 최우선</p>
+                        </div>
+                        <div class="p-4 bg-secondary/10 rounded-2xl">
+                            <div class="text-3xl mb-2">⚡</div>
+                            <h4 class="font-bold text-dark mb-1">빠른 실행</h4>
+                            <p class="text-sm text-gray-600">신속한 개발</p>
+                        </div>
+                        <div class="p-4 bg-primary/10 rounded-2xl">
+                            <div class="text-3xl mb-2">🎨</div>
+                            <h4 class="font-bold text-dark mb-1">디자인</h4>
+                            <p class="text-sm text-gray-600">감각적인 UI</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Element -->
+                <div class="relative">
+                    <div class="aspect-square bg-gradient-to-br from-primary via-secondary to-cta rounded-3xl p-12 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-6xl font-bold font-heading mb-4">2026</div>
+                            <div class="text-2xl font-semibold mb-2">지금 시작하세요</div>
+                            <div class="text-lg opacity-90">더 나은 앱을 함께 만들어갑니다</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-dark text-white">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
+            <h2 class="text-4xl sm:text-5xl font-bold font-heading mb-6">
+                함께 만들어가요
+            </h2>
+            <p class="text-xl text-gray-300 mb-12 leading-relaxed">
+                새로운 프로젝트나 협업 기회에 대해 이야기하고 싶으시다면<br/>
+                언제든 연락주세요
+            </p>
+            <a href="mailto:iyu974895@gmail.com" class="inline-flex items-center px-10 py-5 bg-primary text-white rounded-xl font-bold text-lg hover:bg-secondary transition-colors duration-200 shadow-lg hover:shadow-xl cursor-pointer">
+                <svg class="mr-3 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                이메일 보내기
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold font-heading">Dcode Labs</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        혁신적인 모바일 경험을 설계하고 개발하는 크리에이티브 스튜디오
                     </p>
                 </div>
 
-                <div class="bg-white rounded-lg shadow-sm p-8 sm:p-12">
-                    <h3 class="text-2xl font-semibold font-heading text-primary mb-6">Our Mission</h3>
-                    <p class="text-secondary leading-relaxed mb-6">
-                        To create exceptional mobile experiences that empower businesses and delight users.
-                        We combine technical excellence with creative innovation to build applications that make a difference.
-                    </p>
+                <!-- Projects -->
+                <div>
+                    <h4 class="font-bold mb-4 font-heading">Projects</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/unmask/" class="text-gray-400 hover:text-primary transition-colors cursor-pointer">UNMASK</a></li>
+                        <li><a href="/mbti-luck/" class="text-gray-400 hover:text-primary transition-colors cursor-pointer">MBTI Luck</a></li>
+                        <li><a href="/trip-helper/" class="text-gray-400 hover:text-primary transition-colors cursor-pointer">Trip Helper</a></li>
+                    </ul>
+                </div>
 
-                    <h3 class="text-2xl font-semibold font-heading text-primary mb-6">Core Values</h3>
-                    <ul class="space-y-4 text-secondary">
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-accent mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span><strong class="text-primary">Quality First:</strong> We prioritize code quality, performance, and user experience in every project</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-accent mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span><strong class="text-primary">Innovation:</strong> Staying ahead with the latest technologies and best practices</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-accent mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span><strong class="text-primary">Reliability:</strong> Delivering projects on time with consistent communication</span>
-                        </li>
+                <!-- Support -->
+                <div>
+                    <h4 class="font-bold mb-4 font-heading">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/unmask/privacy.html" class="text-gray-400 hover:text-primary transition-colors cursor-pointer">Privacy Policy</a></li>
+                        <li><a href="/unmask/terms.html" class="text-gray-400 hover:text-primary transition-colors cursor-pointer">Terms of Service</a></li>
+                        <li><a href="/unmask/support.html" class="text-gray-400 hover:text-primary transition-colors cursor-pointer">Support</a></li>
                     </ul>
                 </div>
             </div>
-        </section>
 
-        <!-- Services Section -->
-        <section id="services" class="py-20 bg-white">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl sm:text-4xl font-bold font-heading text-primary mb-4">Our Services</h2>
-                    <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
-                    <p class="text-lg text-secondary max-w-2xl mx-auto">
-                        Comprehensive mobile development services tailored to your needs
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Service 1 -->
-                    <div class="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-                        <div class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-6">
-                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold font-heading text-primary mb-3">iOS Development</h3>
-                        <p class="text-secondary">Native iOS applications built with Swift and SwiftUI, optimized for all Apple devices.</p>
-                    </div>
-
-                    <!-- Service 2 -->
-                    <div class="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-                        <div class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-6">
-                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold font-heading text-primary mb-3">Android Development</h3>
-                        <p class="text-secondary">High-performance Android apps using Kotlin and modern Android frameworks.</p>
-                    </div>
-
-                    <!-- Service 3 -->
-                    <div class="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-                        <div class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-6">
-                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold font-heading text-primary mb-3">Cross-Platform Apps</h3>
-                        <p class="text-secondary">Efficient development for both platforms using React Native and Flutter.</p>
-                    </div>
-
-                    <!-- Service 4 -->
-                    <div class="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-                        <div class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-6">
-                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold font-heading text-primary mb-3">UI/UX Design</h3>
-                        <p class="text-secondary">Beautiful, intuitive interfaces that provide excellent user experiences.</p>
-                    </div>
-
-                    <!-- Service 5 -->
-                    <div class="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-                        <div class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-6">
-                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold font-heading text-primary mb-3">App Testing & QA</h3>
-                        <p class="text-secondary">Comprehensive testing to ensure quality, performance, and security.</p>
-                    </div>
-
-                    <!-- Service 6 -->
-                    <div class="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
-                        <div class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-6">
-                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold font-heading text-primary mb-3">Maintenance & Support</h3>
-                        <p class="text-secondary">Ongoing support, updates, and maintenance for deployed applications.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Team Section -->
-        <section id="team" class="py-20 bg-gray-50">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl sm:text-4xl font-bold font-heading text-primary mb-4">Our Team</h2>
-                    <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
-                    <p class="text-lg text-secondary max-w-2xl mx-auto">
-                        Experienced professionals dedicated to delivering excellence
-                    </p>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-sm p-8 sm:p-12 text-center">
-                    <div class="w-32 h-32 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-16 h-16 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-semibold font-heading text-primary mb-4">Professional Development Team</h3>
-                    <p class="text-secondary leading-relaxed max-w-xl mx-auto">
-                        A dedicated team of experienced developers specializing in mobile application development.
-                        We bring together expertise in iOS, Android, and cross-platform development to deliver innovative solutions.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-white">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl sm:text-4xl font-bold font-heading text-primary mb-4">Get in Touch</h2>
-                    <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
-                    <p class="text-lg text-secondary max-w-2xl mx-auto">
-                        Have a project in mind? We'd love to hear from you.
-                    </p>
-                </div>
-
-                <div class="bg-gray-50 rounded-lg p-8 sm:p-12">
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <svg class="w-6 h-6 text-accent mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                </svg>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-semibold text-primary mb-1">Email</h3>
-                                <a href="mailto:iyu974895@gmail.com" class="text-secondary hover:text-accent transition-colors duration-200">
-                                    iyu974895@gmail.com
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <svg class="w-6 h-6 text-accent mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                </svg>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-semibold text-primary mb-1">Business</h3>
-                                <p class="text-secondary">
-                                    D-U-N-S Number: 696467408
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <svg class="w-6 h-6 text-accent mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-semibold text-primary mb-1">Location</h3>
-                                <p class="text-secondary">
-                                    Seoul, South Korea
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="py-20 bg-primary">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white mb-6">
-                    Ready to Build Your Next App?
-                </h2>
-                <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                    Let's discuss your project and bring your ideas to life with professional mobile development.
-                </p>
-                <a href="mailto:iyu974895@gmail.com"
-                   class="inline-block bg-accent hover:bg-accent/90 text-primary font-semibold px-8 py-4 rounded-lg transition-all duration-200 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary motion-reduce:transition-none">
-                    Contact Us Today
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t border-gray-200 py-8">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <p class="text-secondary text-sm">
-                    © 2024 Dcode. All rights reserved.
-                </p>
-                <p class="text-secondary text-sm mt-2">
-                    Professional Mobile App Development Company
-                </p>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; 2026 Dcode Labs. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Mobile Menu Script -->
+    <!-- Smooth Scroll Script -->
     <script>
-        (function() {
-            'use strict';
-
-            const menuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuLinks = document.querySelectorAll('.mobile-menu-link');
-
-            // Toggle mobile menu
-            function toggleMenu() {
-                const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-                menuButton.setAttribute('aria-expanded', !isExpanded);
-                mobileMenu.classList.toggle('hidden');
-            }
-
-            // Close mobile menu
-            function closeMenu() {
-                menuButton.setAttribute('aria-expanded', 'false');
-                mobileMenu.classList.add('hidden');
-            }
-
-            // Menu button click handler
-            menuButton.addEventListener('click', function(e) {
-                e.stopPropagation();
-                toggleMenu();
-            });
-
-            // Close menu when clicking menu links
-            menuLinks.forEach(function(link) {
-                link.addEventListener('click', closeMenu);
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!mobileMenu.contains(e.target) && !menuButton.contains(e.target)) {
-                    closeMenu();
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80; // navbar height
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
                 }
             });
-
-            // Close menu on escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
-                    closeMenu();
-                    menuButton.focus();
-                }
-            });
-
-            // Close menu on window resize to desktop size
-            window.addEventListener('resize', function() {
-                if (window.innerWidth >= 768) {
-                    closeMenu();
-                }
-            });
-        })();
+        });
     </script>
 </body>
 </html>
