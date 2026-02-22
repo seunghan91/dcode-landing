@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Launchcrew - 함께 만들어가는 스타트업 여정</title>
+    <meta name="description" content="스타트업 크루를 찾고, 아이디어를 현실로. Launchcrew는 창업자와 팀원을 연결하는 스타트업 네트워킹 플랫폼입니다.">
+
+    <!-- Google Fonts: Outfit + DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Outfit', 'sans-serif'],
+                        body: ['DM Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5',
+                        'primary-dark': '#3730A3',
+                        'primary-light': '#818CF8',
+                        secondary: '#7C3AED',
+                        accent: '#F97316',
+                        'bg-soft': '#F5F3FF',
+                        dark: '#1E1B4B',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'DM Sans', sans-serif; background: #ffffff; color: #1E1B4B; -webkit-font-smoothing: antialiased; }
+
+        /* Hero gradient */
+        .hero-gradient {
+            background: linear-gradient(135deg, #1E1B4B 0%, #3730A3 40%, #4F46E5 70%, #7C3AED 100%);
+        }
+
+        /* Phone mockup */
+        .phone-mockup {
+            background: #1a1a2e;
+            border-radius: 2.5rem;
+            border: 3px solid rgba(255,255,255,0.15);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 24px;
+            background: #1a1a2e;
+            border-radius: 0 0 16px 16px;
+            z-index: 10;
+        }
+        .phone-screen {
+            background: linear-gradient(160deg, #0f0f23 0%, #1a1040 50%, #0f0c24 100%);
+            padding: 32px 16px 16px;
+        }
+
+        /* Glassmorphism card */
+        .glass-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 1rem;
+        }
+
+        /* Feature card */
+        .feature-card {
+            background: #ffffff;
+            border: 1.5px solid #E0E7FF;
+            border-radius: 1.25rem;
+            transition: all 0.25s ease;
+        }
+        .feature-card:hover {
+            border-color: #4F46E5;
+            box-shadow: 0 12px 40px rgba(79,70,229,0.12);
+            transform: translateY(-2px);
+        }
+
+        /* Step number */
+        .step-num {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            color: white;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700; font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* CTA button */
+        .btn-primary {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            color: white;
+            border-radius: 0.875rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 8px 24px rgba(79,70,229,0.35);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(8px);
+            color: white;
+            border: 1.5px solid rgba(255,255,255,0.3);
+            border-radius: 0.875rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        /* Download store buttons */
+        .store-btn {
+            background: #1a1a2e;
+            border: 1.5px solid #2d2d4e;
+            border-radius: 0.875rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .store-btn:hover {
+            background: #252545;
+            border-color: #4F46E5;
+            box-shadow: 0 4px 16px rgba(79,70,229,0.2);
+        }
+
+        /* Floating badge animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .float-anim { animation: float 3s ease-in-out infinite; }
+        .float-anim-2 { animation: float 3.5s ease-in-out infinite 0.5s; }
+        .float-anim-3 { animation: float 4s ease-in-out infinite 1s; }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #818CF8, #C4B5FD);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Tag chip */
+        .tag-chip {
+            background: #EEF2FF;
+            color: #4338CA;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .float-anim, .float-anim-2, .float-anim-3 { animation: none; }
+            * { transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── HEADER ─── -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-indigo-50 py-4 px-6">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <a href="../" class="flex items-center gap-2 text-gray-500 hover:text-indigo-600 transition-colors text-sm font-medium cursor-pointer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                dcode labs
+            </a>
+            <div class="flex items-center gap-2.5">
+                <img src="app_logo_1024.png" alt="Launchcrew 로고" class="w-7 h-7 rounded-xl">
+                <span class="font-heading font-bold text-sm text-dark">Launchcrew</span>
+            </div>
+            <a href="mailto:iyu974895@gmail.com" class="text-sm font-medium text-indigo-600 hover:text-indigo-800 transition-colors cursor-pointer hidden sm:block">문의하기</a>
+        </div>
+    </header>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero-gradient pt-24 pb-0 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 pt-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                <!-- Left: Copy -->
+                <div class="text-white pb-12 lg:pb-20">
+                    <div class="inline-flex items-center gap-2 glass-card px-4 py-2 mb-6 text-sm font-medium text-indigo-200">
+                        <img src="app_logo_1024.png" alt="" class="w-5 h-5 rounded-lg">
+                        스타트업 네트워킹 플랫폼
+                    </div>
+
+                    <h1 class="font-heading font-black text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-6">
+                        함께 만드는<br>
+                        <span class="gradient-text">스타트업 여정</span>
+                    </h1>
+
+                    <p class="text-indigo-200 text-lg leading-relaxed mb-8 max-w-md">
+                        아이디어는 있지만 함께할 사람이 없나요?<br>
+                        Launchcrew에서 당신의 크루를 찾고<br>
+                        꿈을 현실로 만들어보세요.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap gap-3 mb-10">
+                        <button class="store-btn flex items-center gap-3 px-5 py-3">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                            <div class="text-left">
+                                <div class="text-white/60 text-xs">Download on the</div>
+                                <div class="text-white font-heading font-bold text-sm">App Store</div>
+                            </div>
+                        </button>
+                        <button class="store-btn flex items-center gap-3 px-5 py-3">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.35.2.76.2 1.12.02l11.62-6.57-2.5-2.52-10.24 9.07zM20.75 10.3L17.52 8.4 14.68 11l3.12 3.13 2.95-1.67c.84-.48.84-1.68 0-2.16zM2.14.44C1.8.64 1.6 1.01 1.6 1.47V22.5c0 .47.2.84.54 1.04l.1.06 11.8-11.8V11.5L2.14.44zM3.3.22l12.95 7.32-2.5 2.5L3.3.22z"/></svg>
+                            <div class="text-left">
+                                <div class="text-white/60 text-xs">Get it on</div>
+                                <div class="text-white font-heading font-bold text-sm">Google Play</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="flex items-center gap-6">
+                        <div>
+                            <div class="font-heading font-bold text-2xl text-white">500+</div>
+                            <div class="text-indigo-300 text-xs mt-0.5">크루 멤버</div>
+                        </div>
+                        <div class="w-px h-10 bg-white/20"></div>
+                        <div>
+                            <div class="font-heading font-bold text-2xl text-white">120+</div>
+                            <div class="text-indigo-300 text-xs mt-0.5">진행 중 프로젝트</div>
+                        </div>
+                        <div class="w-px h-10 bg-white/20"></div>
+                        <div>
+                            <div class="font-heading font-bold text-2xl text-white">4.8</div>
+                            <div class="text-indigo-300 text-xs mt-0.5 flex items-center gap-0.5">
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                앱 평점
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Phone mockup -->
+                <div class="relative flex justify-center lg:justify-end pb-0">
+                    <!-- Floating badges -->
+                    <div class="absolute top-8 left-0 glass-card px-3 py-2 float-anim z-10">
+                        <div class="flex items-center gap-2">
+                            <div class="w-7 h-7 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center text-white text-xs font-bold">K</div>
+                            <div>
+                                <div class="text-white text-xs font-semibold">Kim Jiwon</div>
+                                <div class="text-indigo-300 text-[10px]">iOS Developer 합류</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute top-24 right-4 lg:-right-4 glass-card px-3 py-2 float-anim-2 z-10">
+                        <div class="flex items-center gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            <div class="text-white text-xs font-semibold">새 프로젝트 매칭!</div>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-20 left-2 lg:-left-4 glass-card px-3 py-2 float-anim-3 z-10">
+                        <div class="flex items-center gap-1.5">
+                            <div class="flex -space-x-1.5">
+                                <div class="w-5 h-5 rounded-full bg-indigo-400 border border-indigo-900 text-[9px] flex items-center justify-center text-white font-bold">P</div>
+                                <div class="w-5 h-5 rounded-full bg-violet-400 border border-indigo-900 text-[9px] flex items-center justify-center text-white font-bold">L</div>
+                                <div class="w-5 h-5 rounded-full bg-pink-400 border border-indigo-900 text-[9px] flex items-center justify-center text-white font-bold">S</div>
+                            </div>
+                            <div class="text-white text-[10px] font-medium">3명이 관심 표시</div>
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="phone-mockup w-64 h-[520px]">
+                        <div class="phone-screen h-full p-4 pt-8">
+                            <!-- App UI mockup -->
+                            <div class="flex items-center justify-between mb-4">
+                                <div>
+                                    <div class="text-white/60 text-[10px]">안녕하세요,</div>
+                                    <div class="text-white font-heading font-bold text-sm">박지수님 👋</div>
+                                </div>
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-400 to-violet-500 flex items-center justify-center text-white text-xs font-bold">JS</div>
+                            </div>
+
+                            <!-- Search bar -->
+                            <div class="bg-white/10 rounded-xl px-3 py-2 flex items-center gap-2 mb-4">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                                <span class="text-white/40 text-[11px]">크루 또는 프로젝트 검색</span>
+                            </div>
+
+                            <!-- Crew cards -->
+                            <div class="text-white/60 text-[10px] mb-2 font-medium">추천 크루원</div>
+                            <div class="space-y-2 mb-4">
+                                <div class="bg-white/10 rounded-xl p-3">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center text-white text-[10px] font-bold">MK</div>
+                                        <div>
+                                            <div class="text-white text-[11px] font-semibold">민경 · 개발자</div>
+                                            <div class="text-white/50 text-[9px]">React, Node.js · 서울</div>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <div class="bg-indigo-500 rounded-lg px-2 py-0.5 text-white text-[9px] font-medium">연결</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-1">
+                                        <span class="bg-white/10 rounded px-1.5 py-0.5 text-white/60 text-[8px]">핀테크</span>
+                                        <span class="bg-white/10 rounded px-1.5 py-0.5 text-white/60 text-[8px]">SaaS</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white/10 rounded-xl p-3">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 flex items-center justify-center text-white text-[10px] font-bold">SR</div>
+                                        <div>
+                                            <div class="text-white text-[11px] font-semibold">소리 · 디자이너</div>
+                                            <div class="text-white/50 text-[9px]">UI/UX, Figma · 부산</div>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <div class="bg-indigo-500 rounded-lg px-2 py-0.5 text-white text-[9px] font-medium">연결</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Hot projects -->
+                            <div class="text-white/60 text-[10px] mb-2 font-medium">인기 프로젝트</div>
+                            <div class="bg-gradient-to-r from-indigo-600/40 to-violet-600/40 rounded-xl p-3">
+                                <div class="flex items-center justify-between mb-1.5">
+                                    <div class="text-white text-[11px] font-semibold">AI 헬스케어 앱</div>
+                                    <div class="flex items-center gap-0.5">
+                                        <svg width="8" height="8" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                        <span class="text-yellow-400 text-[9px]">인기</span>
+                                    </div>
+                                </div>
+                                <div class="text-white/50 text-[9px] mb-2">개발자 1명, 마케터 1명 구함</div>
+                                <div class="w-full bg-white/10 rounded-full h-1">
+                                    <div class="bg-gradient-to-r from-indigo-400 to-violet-400 h-1 rounded-full" style="width:70%"></div>
+                                </div>
+                                <div class="text-white/40 text-[8px] mt-1">팀 구성 70%</div>
+                            </div>
+
+                            <!-- Bottom nav -->
+                            <div class="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-sm px-4 py-3">
+                                <div class="flex items-center justify-around">
+                                    <button aria-label="홈">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                                    </button>
+                                    <button aria-label="탐색">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                                    </button>
+                                    <button aria-label="프로젝트" class="w-10 h-10 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #4F46E5, #7C3AED)">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                    </button>
+                                    <button aria-label="메시지">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                                    </button>
+                                    <button aria-label="프로필">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── FEATURES ─── -->
+    <section class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="tag-chip inline-block mb-4">핵심 기능</div>
+                <h2 class="font-heading font-black text-4xl sm:text-5xl text-dark mb-4">
+                    크루를 찾는 가장 <span style="background: linear-gradient(135deg, #4F46E5, #7C3AED); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">스마트한 방법</span>
+                </h2>
+                <p class="text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed">
+                    스킬, 관심 분야, 지역을 기반으로 최적의 팀원을 매칭해드립니다
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Feature 1 -->
+                <div class="feature-card p-6 cursor-default">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: #EEF2FF">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-dark mb-2">스마트 매칭</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">스킬·관심사·업종을 분석해 최적의 공동창업자와 팀원을 추천합니다</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card p-6 cursor-default">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: #F5F3FF">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-dark mb-2">프로젝트 모집</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">아이디어를 공개하고 필요한 역할을 명시해 함께할 크루를 모집하세요</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card p-6 cursor-default">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: #FFF7ED">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-dark mb-2">실시간 소통</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">크루원과 실시간 메시지로 소통하고 프로젝트 진행 상황을 공유하세요</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card p-6 cursor-default">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: #F0FDF4">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-dark mb-2">검증된 크루</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">프로필 인증과 포트폴리오 리뷰로 신뢰할 수 있는 팀원을 찾으세요</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── HOW IT WORKS ─── -->
+    <section class="py-24" style="background: #F5F3FF">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="tag-chip inline-block mb-4">시작하기</div>
+                <h2 class="font-heading font-black text-4xl sm:text-5xl text-dark mb-4">
+                    3단계로 시작하는<br>스타트업 여정
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                <!-- Connector line (desktop) -->
+                <div class="hidden md:block absolute top-6 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-indigo-200 via-violet-300 to-indigo-200" style="top: 20px; left: calc(16.67% + 20px); right: calc(16.67% + 20px)"></div>
+
+                <!-- Step 1 -->
+                <div class="text-center">
+                    <div class="step-num mx-auto mb-5">1</div>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-indigo-100">
+                        <div class="w-16 h-16 rounded-2xl bg-indigo-50 flex items-center justify-center mx-auto mb-4">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-dark mb-2">프로필 만들기</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">나의 스킬, 경험, 관심 분야를 프로필에 등록하세요. 매칭 정확도가 높아집니다.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="text-center">
+                    <div class="step-num mx-auto mb-5">2</div>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-violet-100">
+                        <div class="w-16 h-16 rounded-2xl bg-violet-50 flex items-center justify-center mx-auto mb-4">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-dark mb-2">크루 탐색</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">추천 크루원을 둘러보거나 직접 검색해서 원하는 팀원과 프로젝트를 찾아보세요.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="text-center">
+                    <div class="step-num mx-auto mb-5">3</div>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-orange-100">
+                        <div class="w-16 h-16 rounded-2xl bg-orange-50 flex items-center justify-center mx-auto mb-4">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-dark mb-2">런치!</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">크루를 완성하고 프로젝트를 시작하세요. 함께라면 어떤 아이디어도 가능합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── ROLE TAGS ─── -->
+    <section class="py-20 bg-white overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 text-center mb-10">
+            <h2 class="font-heading font-black text-3xl sm:text-4xl text-dark mb-3">
+                모든 역할의 크루원이 있습니다
+            </h2>
+            <p class="text-gray-500">개발자, 디자이너, 마케터, 기획자 — Launchcrew에 다 있어요</p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-3 px-6">
+            <span class="px-5 py-2.5 rounded-full font-heading font-semibold text-sm cursor-default border-2 border-indigo-200 text-indigo-700 bg-indigo-50 hover:border-indigo-400 transition-colors">iOS 개발자</span>
+            <span class="px-5 py-2.5 rounded-full font-heading font-semibold text-sm cursor-default border-2 border-violet-200 text-violet-700 bg-violet-50 hover:border-violet-400 transition-colors">Android 개발자</span>
+            <span class="px-5 py-2.5 rounded-full font-heading font-semibold text-sm cursor-default border-2 border-blue-200 text-blue-700 bg-blue-50 hover:border-blue-400 transition-colors">백엔드 개발자</span>
+            <span class="px-5 py-2.5 rounded-full font-heading font-semibold text-sm cursor-default border-2 border-cyan-200 text-cyan-700 bg-cyan-50 hover:border-cyan-400 transition-colors">프론트엔드 개발자</span>
+            <span class="px-5 py-2.5 rounded-full font-heading font-semibold text-sm cursor-default border-2 border-pink-200 text-pink-700 bg-pink-50 hover:border-pink-400 transition-colors">UI/UX 디자이너</span>
+            <span class="px-5 py-2.5 rounded-full font-heading font-semibold text-sm cursor-default border-2 border-rose-200 text-rose-700 bg-rose-50 hover:border-rose-400 transition-colors">브랜드 디자이너</span>
+            <span class="px-5 py-2.5 rounded-full font-heading font-semibold text-sm cursor-default border-2 border-orange-200 text-orange-700 bg-orange-50 hover:border-orange-400 transition-colors">그로스 마케터</span>
+            <span class="px-5 py-2.5 rounded-full font-heading font-semibold text-sm cursor-default border-2 border-amber-200 text-amber-700 bg-amber-50 hover:border-amber-400 transition-colors">콘텐츠 마케터</span>
+            <span class="px-5 py-2.5 rounded-full font-heading font-semibold text-sm cursor-default border-2 border-green-200 text-green-700 bg-green-50 hover:border-green-400 transition-colors">PM / 기획자</span>
+            <span class="px-5 py-2.5 rounded-full font-heading font-semibold text-sm cursor-default border-2 border-teal-200 text-teal-700 bg-teal-50 hover:border-teal-400 transition-colors">데이터 분석가</span>
+            <span class="px-5 py-2.5 rounded-full font-heading font-semibold text-sm cursor-default border-2 border-purple-200 text-purple-700 bg-purple-50 hover:border-purple-400 transition-colors">AI / ML 엔지니어</span>
+            <span class="px-5 py-2.5 rounded-full font-heading font-semibold text-sm cursor-default border-2 border-gray-200 text-gray-600 bg-gray-50 hover:border-gray-400 transition-colors">공동창업자</span>
+        </div>
+    </section>
+
+    <!-- ─── DOWNLOAD CTA ─── -->
+    <section class="py-24" style="background: linear-gradient(135deg, #1E1B4B 0%, #3730A3 50%, #4F46E5 100%)">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center gap-2 glass-card px-4 py-2 mb-6 text-sm font-medium text-indigo-200">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                지금 바로 시작하세요
+            </div>
+            <h2 class="font-heading font-black text-4xl sm:text-5xl text-white mb-5 leading-tight">
+                당신의 크루가<br>기다리고 있어요
+            </h2>
+            <p class="text-indigo-300 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+                혼자서는 막막했던 창업, 이제 Launchcrew와 함께라면<br>첫 걸음이 훨씬 가볍습니다.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 mb-10">
+                <button class="store-btn flex items-center gap-3 px-6 py-3.5">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    <div class="text-left">
+                        <div class="text-white/60 text-xs">Download on the</div>
+                        <div class="text-white font-heading font-bold">App Store</div>
+                    </div>
+                </button>
+                <button class="store-btn flex items-center gap-3 px-6 py-3.5">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.35.2.76.2 1.12.02l11.62-6.57-2.5-2.52-10.24 9.07zM20.75 10.3L17.52 8.4 14.68 11l3.12 3.13 2.95-1.67c.84-.48.84-1.68 0-2.16zM2.14.44C1.8.64 1.6 1.01 1.6 1.47V22.5c0 .47.2.84.54 1.04l.1.06 11.8-11.8V11.5L2.14.44zM3.3.22l12.95 7.32-2.5 2.5L3.3.22z"/></svg>
+                    <div class="text-left">
+                        <div class="text-white/60 text-xs">Get it on</div>
+                        <div class="text-white font-heading font-bold">Google Play</div>
+                    </div>
+                </button>
+            </div>
+
+            <p class="text-indigo-400 text-sm">무료 다운로드 · iOS 14+ / Android 8.0+</p>
+        </div>
+    </section>
+
+    <!-- ─── DEVELOPER INFO ─── -->
+    <section class="py-16 bg-white border-t border-gray-100">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-10">
+                <h2 class="font-heading font-bold text-2xl text-dark mb-2">개발사 정보</h2>
+                <p class="text-gray-400 text-sm">앱 이용 및 개인정보에 대해 궁금한 점은 아래로 문의해주세요</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center flex-shrink-0">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </div>
+                        <div>
+                            <div class="text-xs font-semibold text-gray-400 mb-1">개발사</div>
+                            <div class="font-heading font-bold text-dark">dcode labs</div>
+                            <a href="https://dcode-labs.com/" class="text-indigo-500 text-sm hover:underline cursor-pointer">dcode-labs.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center flex-shrink-0">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <div>
+                            <div class="text-xs font-semibold text-gray-400 mb-1">사용자 지원 이메일</div>
+                            <a href="mailto:iyu974895@gmail.com" class="font-heading font-bold text-dark hover:text-indigo-600 transition-colors cursor-pointer">iyu974895@gmail.com</a>
+                            <div class="text-gray-400 text-xs mt-0.5">문의 · 개인정보 관련</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-violet-50 flex items-center justify-center flex-shrink-0">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div>
+                            <div class="text-xs font-semibold text-gray-400 mb-1">개인정보처리방침</div>
+                            <a href="/launchcrew/privacy/" class="font-heading font-bold text-dark hover:text-violet-600 transition-colors cursor-pointer">확인하기</a>
+                            <div class="text-gray-400 text-xs mt-0.5">개인정보 수집·이용 안내</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center flex-shrink-0">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        </div>
+                        <div>
+                            <div class="text-xs font-semibold text-gray-400 mb-1">서비스 이용약관</div>
+                            <a href="/launchcrew/terms/" class="font-heading font-bold text-dark hover:text-orange-600 transition-colors cursor-pointer">확인하기</a>
+                            <div class="text-gray-400 text-xs mt-0.5">서비스 이용 조건 안내</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer style="background: #1E1B4B" class="py-12 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #4F46E5, #7C3AED)">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <div>
+                        <div class="font-heading font-bold text-white text-sm">Launchcrew</div>
+                        <div class="text-indigo-400 text-xs">by dcode labs</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-6 text-sm">
+                    <a href="/launchcrew/privacy/" class="text-indigo-400 hover:text-white transition-colors cursor-pointer">개인정보처리방침</a>
+                    <a href="/launchcrew/terms/" class="text-indigo-400 hover:text-white transition-colors cursor-pointer">이용약관</a>
+                    <a href="mailto:iyu974895@gmail.com" class="text-indigo-400 hover:text-white transition-colors cursor-pointer">문의하기</a>
+                    <a href="../" class="text-indigo-400 hover:text-white transition-colors cursor-pointer">dcode labs</a>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-indigo-900/50 text-center">
+                <p class="text-indigo-500 text-xs">
+                    © 2025 dcode labs. All rights reserved. · 사업자등록번호 문의: <a href="mailto:iyu974895@gmail.com" class="hover:text-indigo-300 transition-colors cursor-pointer">iyu974895@gmail.com</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
