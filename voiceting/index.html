@@ -3,24 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Voiceting - 음성으로 연결되는 새로운 소통 방식. 목소리로 마음을 전하세요.">
-    <title>Voiceting - 음성 메시지 소셜 앱</title>
+    <meta name="description" content="보이스팅 - 목소리로 연결되는 설레는 소통. 상대방의 목소리를 듣고, 내 마음을 전해보세요.">
+    <title>보이스팅 - 목소리로 시작되는 인연</title>
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://dcode-labs.com/voiceting/">
-    <meta property="og:title" content="Voiceting - 음성으로 연결되다">
-    <meta property="og:description" content="음성 메시지로 더 깊이 연결되는 소통 플랫폼. 목소리에는 감정이 담깁니다.">
+    <meta property="og:title" content="보이스팅 - 목소리로 시작되는 인연">
+    <meta property="og:description" content="설레는 목소리를 주고받아보세요. 보이스팅은 음성 메시지로 연결되는 새로운 소통 앱입니다.">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Voiceting - 음성으로 연결되다">
-    <meta name="twitter:description" content="음성 메시지로 더 깊이 연결되는 소통 플랫폼.">
-
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Noto Sans KR -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -30,15 +25,22 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#7C3AED',
-                        secondary: '#5B21B6',
-                        accent: '#DDD6FE',
-                        dark: '#0F0A1E',
-                        card: '#1A1035',
+                        primary: '#e63946',
+                        'primary-hover': '#c9303c',
+                        'primary-light': '#fff0f0',
+                        'primary-soft': '#ffccd0',
+                        secondary: '#ffb3ba',
+                        'text-main': '#2d1b1b',
+                        'text-muted': '#8b6b6b',
+                        'border-soft': 'rgba(230, 57, 70, 0.15)',
+                        accent: '#ffd4d8',
                     },
                     fontFamily: {
-                        heading: ['Nunito', 'sans-serif'],
-                        body: ['Noto Sans KR', 'sans-serif'],
+                        sans: ['Noto Sans KR', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        '2xl': '1rem',
+                        '3xl': '1.5rem',
                     }
                 }
             }
@@ -46,197 +48,681 @@
     </script>
 
     <style>
-        body { font-family: 'Noto Sans KR', sans-serif; background: #0F0A1E; color: #F5F3FF; }
-        .gradient-text { background: linear-gradient(135deg, #A78BFA, #7C3AED, #EC4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .card-glow { box-shadow: 0 0 30px rgba(124, 58, 237, 0.15); }
-        .wave-btn { position: relative; overflow: hidden; }
-        .wave-btn::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s; }
-        .wave-btn:hover::after { opacity: 1; }
-        .sound-wave { display: flex; align-items: center; gap: 3px; }
-        .sound-wave span { display: block; width: 4px; background: #A78BFA; border-radius: 2px; animation: soundWave 1.2s ease-in-out infinite; }
-        .sound-wave span:nth-child(1) { height: 12px; animation-delay: 0s; }
-        .sound-wave span:nth-child(2) { height: 24px; animation-delay: 0.15s; }
-        .sound-wave span:nth-child(3) { height: 36px; animation-delay: 0.3s; }
-        .sound-wave span:nth-child(4) { height: 24px; animation-delay: 0.45s; }
-        .sound-wave span:nth-child(5) { height: 12px; animation-delay: 0.6s; }
-        @keyframes soundWave { 0%, 100% { transform: scaleY(0.5); opacity: 0.5; } 50% { transform: scaleY(1); opacity: 1; } }
-        .feature-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #ffffff;
+            color: #2d1b1b;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Waveform animation */
+        .waveform {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .waveform-bar {
+            width: 4px;
+            border-radius: 2px;
+            background: #e63946;
+            animation: wave 1.4s ease-in-out infinite;
+        }
+        .waveform-bar:nth-child(1) { height: 8px;  animation-delay: 0s; }
+        .waveform-bar:nth-child(2) { height: 18px; animation-delay: 0.1s; }
+        .waveform-bar:nth-child(3) { height: 28px; animation-delay: 0.2s; }
+        .waveform-bar:nth-child(4) { height: 22px; animation-delay: 0.3s; }
+        .waveform-bar:nth-child(5) { height: 14px; animation-delay: 0.4s; }
+        .waveform-bar:nth-child(6) { height: 28px; animation-delay: 0.5s; }
+        .waveform-bar:nth-child(7) { height: 18px; animation-delay: 0.6s; }
+        .waveform-bar:nth-child(8) { height: 8px;  animation-delay: 0.7s; }
+        @keyframes wave {
+            0%, 100% { transform: scaleY(0.4); opacity: 0.5; }
+            50% { transform: scaleY(1); opacity: 1; }
+        }
+
+        /* Floating card shadow */
+        .card-shadow {
+            box-shadow: 0 4px 24px rgba(230, 57, 70, 0.10), 0 1px 4px rgba(45,27,27,0.06);
+        }
+        .card-shadow-lg {
+            box-shadow: 0 8px 40px rgba(230, 57, 70, 0.14), 0 2px 8px rgba(45,27,27,0.08);
+        }
+
+        /* Phone mockup */
+        .phone-frame {
+            background: #fff0f0;
+            border: 2px solid rgba(230, 57, 70, 0.2);
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(230, 57, 70, 0.18), 0 4px 16px rgba(45,27,27,0.1);
+        }
+        .phone-notch {
+            width: 80px;
+            height: 20px;
+            background: rgba(230, 57, 70, 0.12);
+            border-radius: 0 0 12px 12px;
+            margin: 0 auto;
+        }
+
+        /* Gradient hero bg */
+        .hero-bg {
+            background: linear-gradient(160deg, #fff5f5 0%, #ffffff 50%, #fff0f2 100%);
+        }
+
+        /* Smooth transitions */
+        a, button { transition: all 150ms ease; }
+
+        /* Section padding */
+        .section { padding: 80px 24px; }
+        @media (max-width: 768px) { .section { padding: 56px 20px; } }
+
+        /* Blob decoration */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(48px);
+            pointer-events: none;
+        }
+
+        /* Step connector line */
+        .step-line {
+            position: absolute;
+            top: 24px;
+            left: calc(50% + 28px);
+            right: calc(-50% + 28px);
+            height: 2px;
+            background: linear-gradient(to right, #ffb3ba, #ffd4d8);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .waveform-bar { animation: none; }
+        }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/30 border-b border-white/5">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-9 h-9 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
-                    <span class="text-white text-base">🎙️</span>
-                </div>
-                <span class="font-heading font-800 text-xl text-white tracking-tight">Voiceting</span>
+
+<!-- ─── HEADER ─── -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-rose-100">
+    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="22"/>
+                </svg>
             </div>
-            <nav class="hidden md:flex items-center gap-8 text-sm text-white/60">
-                <a href="#features" class="hover:text-white transition-colors">기능</a>
-                <a href="#how" class="hover:text-white transition-colors">사용법</a>
-                <a href="privacy/" class="hover:text-white transition-colors">개인정보처리방침</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero -->
-    <section class="min-h-screen flex flex-col items-center justify-center px-6 pt-20 pb-16 text-center relative overflow-hidden">
-        <!-- Background blobs -->
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-pink-600/15 rounded-full blur-3xl pointer-events-none"></div>
-
-        <!-- Sound wave animation -->
-        <div class="sound-wave mb-8">
-            <span></span><span></span><span></span><span></span><span></span>
+            <span class="font-bold text-lg text-text-main tracking-tight">보이스팅</span>
         </div>
 
-        <h1 class="font-heading text-5xl md:text-7xl font-800 leading-tight mb-6">
-            <span class="gradient-text">목소리로</span><br>
-            <span class="text-white">연결되세요</span>
-        </h1>
+        <!-- Nav -->
+        <nav class="hidden md:flex items-center gap-8 text-sm text-text-muted font-medium">
+            <a href="#features" class="hover:text-primary cursor-pointer">기능</a>
+            <a href="#how-it-works" class="hover:text-primary cursor-pointer">사용법</a>
+            <a href="privacy/" class="hover:text-primary cursor-pointer">개인정보처리방침</a>
+        </nav>
 
-        <p class="text-white/60 text-lg md:text-xl max-w-xl leading-relaxed mb-10">
-            텍스트로는 전할 수 없는 감정을, 음성 메시지로 나눠보세요.<br>
-            Voiceting은 목소리로 더 깊이 연결되는 소통 플랫폼입니다.
+        <!-- CTA -->
+        <a href="#download" class="hidden md:inline-flex items-center gap-1.5 bg-primary text-white text-sm font-semibold px-4 py-2 rounded-xl hover:bg-primary-hover cursor-pointer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            다운로드
+        </a>
+    </div>
+</header>
+
+
+<!-- ─── HERO ─── -->
+<section class="hero-bg pt-16 overflow-hidden relative">
+    <!-- Blob decorations -->
+    <div class="blob w-96 h-96 bg-rose-200/40 top-0 -right-32 opacity-60"></div>
+    <div class="blob w-64 h-64 bg-pink-100/60 bottom-0 -left-16 opacity-80"></div>
+
+    <div class="max-w-5xl mx-auto px-6 py-16 md:py-24">
+        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+
+            <!-- Left: Copy -->
+            <div class="flex-1 text-center lg:text-left">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 bg-primary-light border border-rose-200 text-primary text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+                    <span class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
+                    Android 앱 · 무료 다운로드
+                </div>
+
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-text-main leading-tight mb-4">
+                    목소리로<br>
+                    <span class="text-primary">시작되는</span> 인연
+                </h1>
+
+                <p class="text-text-muted text-base md:text-lg leading-relaxed mb-8 max-w-md mx-auto lg:mx-0">
+                    설레는 목소리를 주고받아보세요.<br>
+                    상대방의 음성을 듣고, 마음에 들면 답장을 보내세요.
+                </p>
+
+                <!-- Waveform -->
+                <div class="flex items-center gap-3 justify-center lg:justify-start mb-8">
+                    <div class="waveform">
+                        <div class="waveform-bar"></div>
+                        <div class="waveform-bar"></div>
+                        <div class="waveform-bar"></div>
+                        <div class="waveform-bar"></div>
+                        <div class="waveform-bar"></div>
+                        <div class="waveform-bar"></div>
+                        <div class="waveform-bar"></div>
+                        <div class="waveform-bar"></div>
+                    </div>
+                    <span class="text-xs text-text-muted font-medium">00:15</span>
+                </div>
+
+                <!-- Download buttons -->
+                <div id="download" class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                    <a href="#" class="flex items-center justify-center gap-3 bg-text-main text-white px-6 py-3.5 rounded-2xl font-semibold text-sm hover:bg-gray-800 cursor-pointer card-shadow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="flex-shrink-0"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        <div class="text-left">
+                            <div class="text-xs opacity-70 leading-none mb-0.5">Download on the</div>
+                            <div class="text-base font-bold leading-none">App Store</div>
+                        </div>
+                    </a>
+                    <a href="#" class="flex items-center justify-center gap-3 bg-primary text-white px-6 py-3.5 rounded-2xl font-semibold text-sm hover:bg-primary-hover cursor-pointer card-shadow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="flex-shrink-0"><path d="M3.18 23.76c.28.16.61.19.94.07L13.64 12 3.12.17C2.79.05 2.46.08 2.18.24 1.62.57 1.25 1.19 1.25 2v20c0 .81.37 1.43.93 1.76zM16.79 8.67L6.32 2.26l9.21 9.21-2.74 2.74zM6.32 21.74l10.47-6.41-2-2zM20.62 10.34l-2.42-1.48L15.42 12l2.78 2.78 2.42-1.48c.69-.42 1.13-.97 1.13-1.48s-.44-1.06-1.13-1.48z"/></svg>
+                        <div class="text-left">
+                            <div class="text-xs opacity-80 leading-none mb-0.5">Get it on</div>
+                            <div class="text-base font-bold leading-none">Google Play</div>
+                        </div>
+                    </a>
+                </div>
+
+                <p class="text-xs text-text-muted mt-4 text-center lg:text-left">곧 출시 예정 · Android 먼저 출시</p>
+            </div>
+
+            <!-- Right: Phone mockup -->
+            <div class="flex-shrink-0 relative">
+                <div class="phone-frame w-64 md:w-72">
+                    <!-- Status bar -->
+                    <div class="px-5 pt-3 pb-1 flex items-center justify-between text-xs font-medium text-rose-400">
+                        <span>9:41</span>
+                        <div class="phone-notch"></div>
+                        <div class="flex items-center gap-1">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3a4.237 4.237 0 0 0-6 0zm-4-4l2 2a7.074 7.074 0 0 1 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- App content mockup -->
+                    <div class="px-4 pb-4 space-y-3">
+                        <!-- Header -->
+                        <div class="flex items-center justify-between py-2">
+                            <span class="text-base font-bold text-primary">보이스팅</span>
+                            <div class="flex items-center gap-2">
+                                <div class="flex items-center gap-1 bg-white border border-rose-200 px-2 py-1 rounded-lg text-xs font-semibold text-text-main card-shadow">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#e63946" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                    30
+                                </div>
+                                <div class="flex items-center gap-1 bg-white border border-rose-200 px-2 py-1 rounded-lg text-xs font-semibold text-text-main card-shadow">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="#e63946"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" fill="none" stroke="white" stroke-width="2"/></svg>
+                                    5
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Receive voice card -->
+                        <div class="bg-white rounded-2xl p-3.5 border border-rose-100 card-shadow">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e63946" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-semibold text-text-main">새로운 보이스 받기</div>
+                                    <div class="text-xs text-text-muted">듣고 싶은 목소리를 선택하세요</div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mb-2.5">
+                                <button class="py-1.5 px-2 rounded-lg border-2 border-primary bg-primary/10 text-primary text-xs font-semibold cursor-pointer">여성</button>
+                                <button class="py-1.5 px-2 rounded-lg border-2 border-rose-100 bg-rose-50 text-text-muted text-xs font-medium cursor-pointer hover:border-primary/30">남성</button>
+                            </div>
+                            <button class="w-full py-2 rounded-xl bg-primary text-white text-xs font-semibold cursor-pointer hover:bg-primary-hover">새로운 보이스 받기</button>
+                        </div>
+
+                        <!-- Send voice card -->
+                        <div class="bg-white rounded-2xl p-3.5 border border-rose-100 card-shadow">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-8 h-8 rounded-full bg-secondary/50 flex items-center justify-center flex-shrink-0">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e63946" stroke-width="2.5"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-semibold text-text-main">내 보이스 보내기</div>
+                                    <div class="text-xs text-text-muted">마음을 담아 목소리를 전해보세요</div>
+                                </div>
+                            </div>
+                            <button class="w-full py-2 rounded-xl bg-secondary text-text-main text-xs font-semibold cursor-pointer hover:bg-pink-200">보이스 녹음하기</button>
+                        </div>
+
+                        <!-- Bottom nav -->
+                        <div class="flex items-center justify-around pt-1 border-t border-rose-100">
+                            <button class="flex flex-col items-center gap-0.5 text-primary cursor-pointer">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                                <span class="text-xs">홈</span>
+                            </button>
+                            <button class="flex flex-col items-center gap-0.5 text-text-muted cursor-pointer hover:text-primary">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                <span class="text-xs">대화</span>
+                            </button>
+                            <button class="flex flex-col items-center gap-0.5 text-text-muted cursor-pointer hover:text-primary">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+                                <span class="text-xs">프로필</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating badge: active users -->
+                <div class="absolute -top-3 -right-4 bg-white rounded-2xl px-3 py-2 card-shadow-lg border border-rose-100 text-xs font-semibold text-text-main whitespace-nowrap">
+                    <span class="text-primary">✦</span> 지금 1,200명 접속 중
+                </div>
+
+                <!-- Floating badge: new message -->
+                <div class="absolute -bottom-2 -left-6 bg-primary text-white rounded-2xl px-3 py-2 card-shadow-lg text-xs font-semibold whitespace-nowrap">
+                    새 보이스 도착! 👂
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ─── STATS ─── -->
+<section class="bg-primary-light border-y border-rose-100 py-8">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="grid grid-cols-3 gap-4 text-center">
+            <div>
+                <div class="text-2xl md:text-3xl font-bold text-primary">10만+</div>
+                <div class="text-xs md:text-sm text-text-muted mt-1 font-medium">누적 다운로드</div>
+            </div>
+            <div class="border-x border-rose-200">
+                <div class="text-2xl md:text-3xl font-bold text-primary">4.8★</div>
+                <div class="text-xs md:text-sm text-text-muted mt-1 font-medium">앱스토어 평점</div>
+            </div>
+            <div>
+                <div class="text-2xl md:text-3xl font-bold text-primary">50만+</div>
+                <div class="text-xs md:text-sm text-text-muted mt-1 font-medium">주고받은 보이스</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ─── FEATURES ─── -->
+<section id="features" class="section max-w-5xl mx-auto">
+    <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-main mb-3">
+            보이스팅만의 <span class="text-primary">특별한 기능</span>
+        </h2>
+        <p class="text-text-muted text-base md:text-lg max-w-md mx-auto">
+            텍스트가 아닌 음성으로, 더 진솔하게 연결되세요
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- Feature 1: 랜덤 보이스 -->
+        <div class="bg-white border border-rose-100 rounded-3xl p-6 card-shadow hover:card-shadow-lg hover:-translate-y-1 transition-all cursor-default">
+            <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e63946" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                </svg>
+            </div>
+            <h3 class="font-bold text-text-main text-base mb-2">랜덤 보이스 받기</h3>
+            <p class="text-text-muted text-sm leading-relaxed">원하는 성별의 목소리를 랜덤으로 받아보세요. 매번 새로운 만남이 기다립니다.</p>
+        </div>
+
+        <!-- Feature 2: 보이스 보내기 -->
+        <div class="bg-white border border-rose-100 rounded-3xl p-6 card-shadow hover:card-shadow-lg hover:-translate-y-1 transition-all cursor-default">
+            <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e63946" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="22"/>
+                </svg>
+            </div>
+            <h3 class="font-bold text-text-main text-base mb-2">나의 보이스 보내기</h3>
+            <p class="text-text-muted text-sm leading-relaxed">오늘의 기분, 하고 싶은 말을 녹음해서 보내세요. 나를 표현하는 가장 진솔한 방법.</p>
+        </div>
+
+        <!-- Feature 3: 1:1 대화 -->
+        <div class="bg-white border border-rose-100 rounded-3xl p-6 card-shadow hover:card-shadow-lg hover:-translate-y-1 transition-all cursor-default">
+            <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e63946" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+            </div>
+            <h3 class="font-bold text-text-main text-base mb-2">1:1 음성 대화</h3>
+            <p class="text-text-muted text-sm leading-relaxed">마음에 드는 목소리에 답장을 보내세요. 자연스럽게 1:1 음성 대화가 시작됩니다.</p>
+        </div>
+
+        <!-- Feature 4: 코인 리워드 -->
+        <div class="bg-white border border-rose-100 rounded-3xl p-6 card-shadow hover:card-shadow-lg hover:-translate-y-1 transition-all cursor-default">
+            <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e63946" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v12M9 9h4.5a1.5 1.5 0 1 1 0 3H9m4.5 0H9m4.5 0a1.5 1.5 0 1 1 0 3H9"/>
+                </svg>
+            </div>
+            <h3 class="font-bold text-text-main text-base mb-2">코인 리워드</h3>
+            <p class="text-text-muted text-sm leading-relaxed">5개의 보이스를 보낼 때마다 코인 1개 획득! 코인으로 더 많은 보이스를 받을 수 있어요.</p>
+        </div>
+
+        <!-- Feature 5: 매일 충전 -->
+        <div class="bg-white border border-rose-100 rounded-3xl p-6 card-shadow hover:card-shadow-lg hover:-translate-y-1 transition-all cursor-default">
+            <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e63946" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"/>
+                    <line x1="12" y1="12" x2="12" y2="6"/>
+                </svg>
+            </div>
+            <h3 class="font-bold text-text-main text-base mb-2">매일 30개 자동 충전</h3>
+            <p class="text-text-muted text-sm leading-relaxed">매일 자정마다 메시지 30개가 자동으로 충전돼요. 매일 새로운 설렘을 느껴보세요.</p>
+        </div>
+
+        <!-- Feature 6: 안전한 환경 -->
+        <div class="bg-white border border-rose-100 rounded-3xl p-6 card-shadow hover:card-shadow-lg hover:-translate-y-1 transition-all cursor-default">
+            <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e63946" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+            </div>
+            <h3 class="font-bold text-text-main text-base mb-2">안전한 소통 환경</h3>
+            <p class="text-text-muted text-sm leading-relaxed">전화번호 인증 필수, 신고 시스템, 불건전 콘텐츠 차단. 안심하고 사용할 수 있어요.</p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ─── HOW IT WORKS ─── -->
+<section id="how-it-works" class="section bg-primary-light">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-14">
+            <h2 class="text-3xl md:text-4xl font-bold text-text-main mb-3">
+                딱 <span class="text-primary">3단계</span>면 됩니다
+            </h2>
+            <p class="text-text-muted text-base md:text-lg">복잡한 설정 없이 바로 시작하세요</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+            <!-- Connector lines (desktop only) -->
+            <div class="hidden md:block absolute top-8 left-1/3 w-1/3 h-0.5 bg-gradient-to-r from-primary-soft to-accent"></div>
+            <div class="hidden md:block absolute top-8 left-2/3 w-1/3 h-0.5 bg-gradient-to-r from-accent to-primary-soft"></div>
+
+            <!-- Step 1 -->
+            <div class="flex flex-col items-center text-center relative">
+                <div class="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center font-bold text-xl mb-5 card-shadow-lg z-10">1</div>
+                <h3 class="font-bold text-text-main text-base mb-2">전화번호로 가입</h3>
+                <p class="text-text-muted text-sm leading-relaxed">SMS 인증 하나로 30초 만에 가입 완료. 아이디도 비밀번호도 필요 없어요.</p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="flex flex-col items-center text-center relative">
+                <div class="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center font-bold text-xl mb-5 card-shadow-lg z-10">2</div>
+                <h3 class="font-bold text-text-main text-base mb-2">성별 선택 후 보이스 받기</h3>
+                <p class="text-text-muted text-sm leading-relaxed">남성/여성 중 원하는 성별을 선택하고, 버튼 하나로 새로운 목소리를 만나세요.</p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="flex flex-col items-center text-center relative">
+                <div class="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center font-bold text-xl mb-5 card-shadow-lg z-10">3</div>
+                <h3 class="font-bold text-text-main text-base mb-2">답장으로 대화 시작</h3>
+                <p class="text-text-muted text-sm leading-relaxed">마음에 드는 목소리라면 답장을 보내세요. 1:1 음성 대화가 자연스럽게 시작됩니다.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ─── VOICE PLAYER PREVIEW ─── -->
+<section class="section max-w-5xl mx-auto">
+    <div class="flex flex-col lg:flex-row items-center gap-12">
+
+        <!-- Card mockup -->
+        <div class="flex-1 max-w-sm w-full mx-auto">
+            <div class="bg-white rounded-3xl p-6 card-shadow-lg border border-rose-100">
+                <!-- Sender -->
+                <div class="flex items-center gap-3 mb-5 pb-4 border-b border-rose-100">
+                    <div class="w-12 h-12 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0">
+                        <span class="text-primary font-bold text-lg">별</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2">
+                            <span class="font-semibold text-text-main text-sm">별빛이</span>
+                            <span class="text-xs px-2 py-0.5 rounded-full bg-secondary/60 text-text-main font-medium">여성</span>
+                        </div>
+                        <p class="text-xs text-text-muted">30분 전</p>
+                    </div>
+                    <span class="text-xs text-text-muted font-mono">0:15</span>
+                </div>
+
+                <!-- Player -->
+                <div class="flex items-center gap-4 mb-5">
+                    <button class="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-hover cursor-pointer card-shadow flex-shrink-0">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    </button>
+                    <div class="flex-1">
+                        <div class="flex justify-between text-xs font-mono text-text-muted mb-2">
+                            <span>0:08</span>
+                            <span>0:15</span>
+                        </div>
+                        <div class="h-2 bg-rose-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-primary rounded-full" style="width: 53%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Waveform decoration -->
+                <div class="flex items-center justify-center gap-1.5 mb-5 px-4">
+                    <div class="waveform">
+                        <div class="waveform-bar" style="background:#ffb3ba"></div>
+                        <div class="waveform-bar" style="background:#ffb3ba"></div>
+                        <div class="waveform-bar" style="background:#e63946"></div>
+                        <div class="waveform-bar" style="background:#e63946"></div>
+                        <div class="waveform-bar" style="background:#ffb3ba"></div>
+                        <div class="waveform-bar" style="background:#ffb3ba"></div>
+                        <div class="waveform-bar" style="background:#e63946"></div>
+                        <div class="waveform-bar" style="background:#ffb3ba"></div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="grid grid-cols-3 gap-2">
+                    <button class="flex flex-col items-center gap-1.5 py-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 cursor-pointer transition-colors">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b6b6b" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                        <span class="text-xs text-text-muted font-medium">넘기기</span>
+                    </button>
+                    <button class="flex flex-col items-center gap-1.5 py-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 cursor-pointer transition-colors">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b6b6b" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                        <span class="text-xs text-text-muted font-medium">신고</span>
+                    </button>
+                    <button class="flex flex-col items-center gap-1.5 py-2.5 rounded-xl bg-primary/10 hover:bg-primary/20 cursor-pointer transition-colors">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e63946" stroke-width="2"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg>
+                        <span class="text-xs text-primary font-semibold">답장</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copy -->
+        <div class="flex-1 text-center lg:text-left">
+            <h2 class="text-3xl md:text-4xl font-bold text-text-main mb-4">
+                듣고, 느끼고,<br>
+                <span class="text-primary">마음이 끌리면</span> 답장하세요
+            </h2>
+            <p class="text-text-muted text-base leading-relaxed mb-6 max-w-md mx-auto lg:mx-0">
+                텍스트로는 전달되지 않는 감정이 목소리에는 담겨 있어요.
+                웃음, 떨림, 설렘 — 모든 감정을 그대로 느껴보세요.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                <div class="flex items-center gap-2 bg-primary-light border border-rose-200 rounded-xl px-4 py-2.5">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#e63946"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    <span class="text-sm font-medium text-text-main">마음에 드는 목소리</span>
+                </div>
+                <div class="flex items-center gap-2 bg-primary-light border border-rose-200 rounded-xl px-4 py-2.5">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e63946" stroke-width="2"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg>
+                    <span class="text-sm font-medium text-text-main">바로 음성 답장</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ─── REVIEWS ─── -->
+<section class="section bg-primary-light">
+    <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-text-main mb-2">
+                사용자들의 <span class="text-primary">이야기</span>
+            </h2>
+            <div class="flex items-center justify-center gap-1 mt-2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <span class="text-text-muted text-sm font-medium ml-2">4.8 / 5.0</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div class="bg-white rounded-3xl p-6 card-shadow border border-rose-100">
+                <div class="flex items-center gap-1 mb-3">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <p class="text-text-main text-sm leading-relaxed mb-4">"목소리가 이렇게 설레게 만들 줄 몰랐어요. 텍스트로 시작하는 것보다 훨씬 솔직하게 대화가 이어지더라고요."</p>
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-secondary/60 flex items-center justify-center text-sm font-bold text-primary">지</div>
+                    <div>
+                        <div class="text-xs font-semibold text-text-main">지영이</div>
+                        <div class="text-xs text-text-muted">28세 · 여성</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 card-shadow border border-rose-100">
+                <div class="flex items-center gap-1 mb-3">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <p class="text-text-main text-sm leading-relaxed mb-4">"UI가 깔끔하고 사용법이 단순해서 좋아요. 매일 충전되는 메시지 덕분에 부담없이 즐기고 있습니다."</p>
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-secondary/60 flex items-center justify-center text-sm font-bold text-primary">민</div>
+                    <div>
+                        <div class="text-xs font-semibold text-text-main">민준이</div>
+                        <div class="text-xs text-text-muted">25세 · 남성</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 card-shadow border border-rose-100">
+                <div class="flex items-center gap-1 mb-3">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#e5e7eb"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <p class="text-text-main text-sm leading-relaxed mb-4">"이미 좋아하는 사람 생겼어요 ㅎㅎ 목소리 듣자마자 답장 눌렀는데 지금 잘 대화 중입니다."</p>
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-secondary/60 flex items-center justify-center text-sm font-bold text-primary">소</div>
+                    <div>
+                        <div class="text-xs font-semibold text-text-main">소연이</div>
+                        <div class="text-xs text-text-muted">31세 · 여성</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ─── FINAL CTA ─── -->
+<section class="section text-center relative overflow-hidden">
+    <div class="blob w-80 h-80 bg-rose-100 top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-70"></div>
+
+    <div class="relative z-10 max-w-xl mx-auto">
+        <div class="flex items-center justify-center mb-6">
+            <div class="waveform">
+                <div class="waveform-bar"></div>
+                <div class="waveform-bar"></div>
+                <div class="waveform-bar"></div>
+                <div class="waveform-bar"></div>
+                <div class="waveform-bar"></div>
+                <div class="waveform-bar"></div>
+                <div class="waveform-bar"></div>
+                <div class="waveform-bar"></div>
+            </div>
+        </div>
+
+        <h2 class="text-3xl md:text-5xl font-bold text-text-main mb-4">
+            오늘 설레는 목소리를<br>
+            <span class="text-primary">만나보세요</span>
+        </h2>
+        <p class="text-text-muted text-base md:text-lg mb-10 leading-relaxed">
+            지금 보이스팅을 다운로드하고,<br class="hidden sm:block">
+            새로운 만남을 시작하세요.
         </p>
 
-        <div class="flex flex-col sm:flex-row gap-4 items-center">
-            <a href="#" class="wave-btn inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-2xl font-heading font-700 text-base transition-transform hover:scale-105 active:scale-95">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                App Store
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="#" class="flex items-center justify-center gap-3 bg-text-main text-white px-6 py-4 rounded-2xl font-semibold hover:bg-gray-800 cursor-pointer card-shadow-lg text-sm">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                <div class="text-left">
+                    <div class="text-xs opacity-70 leading-none mb-0.5">Download on the</div>
+                    <div class="text-base font-bold leading-none">App Store</div>
+                </div>
             </a>
-            <a href="#" class="wave-btn inline-flex items-center gap-3 bg-white/10 border border-white/20 text-white px-8 py-4 rounded-2xl font-heading font-700 text-base transition-transform hover:scale-105 active:scale-95 hover:bg-white/15">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.28.16.61.19.94.07L13.64 12 3.12.17C2.79.05 2.46.08 2.18.24 1.62.57 1.25 1.19 1.25 2v20c0 .81.37 1.43.93 1.76zM16.79 8.67L6.32 2.26l9.21 9.21-2.74 2.74zM6.32 21.74l10.47-6.41-2-2zM20.62 10.34l-2.42-1.48L15.42 12l2.78 2.78 2.42-1.48c.69-.42 1.13-.97 1.13-1.48s-.44-1.06-1.13-1.48z"/></svg>
-                Google Play
-            </a>
-        </div>
-
-        <p class="mt-6 text-white/30 text-sm">Android 전용 · 곧 출시</p>
-    </section>
-
-    <!-- Features -->
-    <section id="features" class="py-24 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="font-heading text-4xl font-800 text-white mb-4">왜 <span class="gradient-text">Voiceting</span>인가요?</h2>
-                <p class="text-white/50 text-lg max-w-xl mx-auto">음성 메시지 하나로 관계가 더 깊어집니다</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Feature 1 -->
-                <div class="card-glow bg-card/80 border border-white/10 rounded-2xl p-6 hover:border-purple-500/40 transition-colors">
-                    <div class="feature-icon bg-purple-600/20 mb-4">🎙️</div>
-                    <h3 class="font-heading font-700 text-white text-lg mb-2">음성 브로드캐스트</h3>
-                    <p class="text-white/50 text-sm leading-relaxed">나의 목소리를 여러 사람에게 동시에 전달하세요. 소식, 감정, 일상을 음성으로 공유합니다.</p>
+            <a href="#" class="flex items-center justify-center gap-3 bg-primary text-white px-6 py-4 rounded-2xl font-semibold hover:bg-primary-hover cursor-pointer card-shadow-lg text-sm">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.28.16.61.19.94.07L13.64 12 3.12.17C2.79.05 2.46.08 2.18.24 1.62.57 1.25 1.19 1.25 2v20c0 .81.37 1.43.93 1.76zM16.79 8.67L6.32 2.26l9.21 9.21-2.74 2.74zM6.32 21.74l10.47-6.41-2-2zM20.62 10.34l-2.42-1.48L15.42 12l2.78 2.78 2.42-1.48c.69-.42 1.13-.97 1.13-1.48s-.44-1.06-1.13-1.48z"/></svg>
+                <div class="text-left">
+                    <div class="text-xs opacity-80 leading-none mb-0.5">Get it on</div>
+                    <div class="text-base font-bold leading-none">Google Play</div>
                 </div>
-
-                <!-- Feature 2 -->
-                <div class="card-glow bg-card/80 border border-white/10 rounded-2xl p-6 hover:border-purple-500/40 transition-colors">
-                    <div class="feature-icon bg-pink-600/20 mb-4">💬</div>
-                    <h3 class="font-heading font-700 text-white text-lg mb-2">1:1 음성 대화</h3>
-                    <p class="text-white/50 text-sm leading-relaxed">브로드캐스트에 답장하며 대화를 시작하세요. 텍스트보다 훨씬 따뜻한 음성 채팅.</p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="card-glow bg-card/80 border border-white/10 rounded-2xl p-6 hover:border-purple-500/40 transition-colors">
-                    <div class="feature-icon bg-blue-600/20 mb-4">⏱️</div>
-                    <h3 class="font-heading font-700 text-white text-lg mb-2">6일 자동 만료</h3>
-                    <p class="text-white/50 text-sm leading-relaxed">모든 음성 메시지는 6일 후 자동 삭제됩니다. 부담 없이, 자유롭게 소통하세요.</p>
-                </div>
-
-                <!-- Feature 4 -->
-                <div class="card-glow bg-card/80 border border-white/10 rounded-2xl p-6 hover:border-purple-500/40 transition-colors">
-                    <div class="feature-icon bg-green-600/20 mb-4">🔒</div>
-                    <h3 class="font-heading font-700 text-white text-lg mb-2">안전한 인증</h3>
-                    <p class="text-white/50 text-sm leading-relaxed">전화번호 인증으로 신뢰할 수 있는 사용자들과 연결됩니다. 익명성은 없지만 안전함이 있습니다.</p>
-                </div>
-
-                <!-- Feature 5 -->
-                <div class="card-glow bg-card/80 border border-white/10 rounded-2xl p-6 hover:border-purple-500/40 transition-colors">
-                    <div class="feature-icon bg-yellow-600/20 mb-4">🌊</div>
-                    <h3 class="font-heading font-700 text-white text-lg mb-2">파형 시각화</h3>
-                    <p class="text-white/50 text-sm leading-relaxed">음성 메시지의 파형을 시각적으로 확인하세요. 듣기 전에 메시지의 분위기를 느낄 수 있어요.</p>
-                </div>
-
-                <!-- Feature 6 -->
-                <div class="card-glow bg-card/80 border border-white/10 rounded-2xl p-6 hover:border-purple-500/40 transition-colors">
-                    <div class="feature-icon bg-red-600/20 mb-4">🔔</div>
-                    <h3 class="font-heading font-700 text-white text-lg mb-2">실시간 알림</h3>
-                    <p class="text-white/50 text-sm leading-relaxed">새로운 음성 메시지가 도착하면 즉시 알려드립니다. 중요한 순간을 놓치지 마세요.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How it works -->
-    <section id="how" class="py-24 px-6 bg-gradient-to-b from-transparent to-purple-950/20">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="font-heading text-4xl font-800 text-white mb-4">어떻게 사용하나요?</h2>
-                <p class="text-white/50 text-lg">간단한 3단계로 시작하세요</p>
-            </div>
-
-            <div class="space-y-8">
-                <div class="flex items-start gap-6">
-                    <div class="flex-shrink-0 w-12 h-12 bg-purple-600 rounded-2xl flex items-center justify-center font-heading font-800 text-white text-lg">1</div>
-                    <div class="pt-1">
-                        <h3 class="font-heading font-700 text-white text-xl mb-2">전화번호로 가입</h3>
-                        <p class="text-white/50 leading-relaxed">SMS 인증 하나로 간편하게 가입하세요. 별도의 아이디나 비밀번호가 필요 없습니다.</p>
-                    </div>
-                </div>
-
-                <div class="flex items-start gap-6">
-                    <div class="flex-shrink-0 w-12 h-12 bg-pink-600 rounded-2xl flex items-center justify-center font-heading font-800 text-white text-lg">2</div>
-                    <div class="pt-1">
-                        <h3 class="font-heading font-700 text-white text-xl mb-2">음성 브로드캐스트 녹음</h3>
-                        <p class="text-white/50 leading-relaxed">버튼을 누르고 말하세요. 오늘의 기분, 하고 싶은 말, 무엇이든 음성으로 담아 전송하면 됩니다.</p>
-                    </div>
-                </div>
-
-                <div class="flex items-start gap-6">
-                    <div class="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center font-heading font-800 text-white text-lg">3</div>
-                    <div class="pt-1">
-                        <h3 class="font-heading font-700 text-white text-xl mb-2">답장으로 대화 시작</h3>
-                        <p class="text-white/50 leading-relaxed">다른 사람의 브로드캐스트에 음성으로 답장하세요. 자연스럽게 1:1 음성 대화가 시작됩니다.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="py-24 px-6 text-center">
-        <div class="max-w-2xl mx-auto">
-            <div class="sound-wave justify-center mb-8">
-                <span></span><span></span><span></span><span></span><span></span>
-            </div>
-            <h2 class="font-heading text-4xl md:text-5xl font-800 text-white mb-6">
-                목소리에는<br><span class="gradient-text">감정이 담깁니다</span>
-            </h2>
-            <p class="text-white/50 text-lg mb-10">지금 Voiceting을 시작하고, 더 진솔한 소통을 경험하세요.</p>
-            <a href="mailto:iyu974895@gmail.com" class="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors text-sm">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                iyu974895@gmail.com
             </a>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/5 py-8 px-6">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-white/30 text-sm">
-            <div class="flex items-center gap-2">
-                <span>🎙️</span>
-                <span class="font-heading font-600">Voiceting</span>
-                <span>· by dcode labs</span>
+        <p class="text-xs text-text-muted mt-5">무료 설치 · Android 출시 · iOS 준비 중</p>
+    </div>
+</section>
+
+
+<!-- ─── FOOTER ─── -->
+<footer class="border-t border-rose-100 py-8 px-6">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <!-- Brand -->
+        <div class="flex items-center gap-2 text-text-muted text-sm">
+            <div class="w-6 h-6 bg-primary rounded-lg flex items-center justify-center">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
             </div>
-            <div class="flex items-center gap-6">
-                <a href="privacy/" class="hover:text-white/60 transition-colors">개인정보처리방침</a>
-                <a href="mailto:iyu974895@gmail.com" class="hover:text-white/60 transition-colors">문의하기</a>
-            </div>
-            <span>© 2025 dcode labs. All rights reserved.</span>
+            <span class="font-semibold text-text-main">보이스팅</span>
+            <span>by dcode labs</span>
         </div>
-    </footer>
+
+        <!-- Links -->
+        <div class="flex items-center gap-6 text-sm text-text-muted">
+            <a href="privacy/" class="hover:text-primary cursor-pointer transition-colors">개인정보처리방침</a>
+            <a href="mailto:iyu974895@gmail.com" class="hover:text-primary cursor-pointer transition-colors">문의하기</a>
+        </div>
+
+        <!-- Copyright -->
+        <p class="text-xs text-text-muted">© 2025 dcode labs. All rights reserved.</p>
+    </div>
+</footer>
+
 </body>
 </html>
