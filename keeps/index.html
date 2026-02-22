@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Keeps - 부동산 계약서를 안전하게 보관하는 앱. 암호화 PDF 저장, 갱신 알림, 스마트 계약서 관리">
+    <title>Keeps - 부동산 계약서 관리</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F766E',
+                        secondary: '#14B8A6',
+                        cta: '#0369A1',
+                        bg: '#F0FDFA',
+                        text: '#134E4A',
+                        dark: '#0F172A',
+                    },
+                    fontFamily: {
+                        heading: ['Cinzel', 'serif'],
+                        body: ['Josefin Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Josefin Sans', sans-serif; background: #ffffff; color: #134E4A; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4 { font-family: 'Cinzel', serif; }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        }
+
+        .contract-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .contract-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(15,118,110,0.12);
+        }
+
+        .lock-pulse {
+            animation: lock-glow 3s ease-in-out infinite;
+        }
+        @keyframes lock-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(20,184,166,0.3); }
+            50% { box-shadow: 0 0 40px rgba(20,184,166,0.6); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-teal-100">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2 cursor-pointer hover:opacity-70 transition-opacity text-sm text-teal-600">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 18l-6-6 6-6"/></svg>
+                Dcode Labs
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="#features" class="text-sm text-teal-700 hover:text-teal-500 transition-colors cursor-pointer hidden sm:block">기능</a>
+                <a href="#download" class="px-4 py-2 bg-teal-600 text-white rounded-lg text-sm font-bold hover:bg-teal-500 transition-colors cursor-pointer">다운로드</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative min-h-screen flex items-center pt-16 overflow-hidden bg-gradient-to-br from-teal-50 via-white to-cyan-50">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-teal-500/8 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-cyan-500/8 rounded-full blur-3xl"></div>
+
+        <div class="relative max-w-6xl mx-auto px-6 py-24 z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Text -->
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-teal-100 rounded-full text-teal-700 text-xs font-semibold mb-8">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                        암호화 계약서 보관
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-teal-900 leading-tight mb-6">
+                        소중한 계약서,<br/>
+                        <span class="text-teal-600">안전하게</span><br/>
+                        보관하세요
+                    </h1>
+
+                    <p class="text-teal-700/70 text-lg leading-relaxed mb-10 max-w-lg">
+                        임대차 계약서, 전세 계약서, 매매 계약서를 한 곳에서 암호화 보관.
+                        만료일 알림부터 PDF 내보내기까지, 계약서 관리의 모든 것.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4" id="download">
+                        <a href="#" class="inline-flex items-center justify-center gap-3 px-6 py-4 bg-teal-700 text-white rounded-xl font-bold hover:bg-teal-600 transition-colors cursor-pointer">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98l-.09.06c-.22.15-2.22 1.3-2.19 3.88.03 3.02 2.65 4.03 2.68 4.04l-.04.1zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            App Store
+                        </a>
+                        <a href="#" class="inline-flex items-center justify-center gap-3 px-6 py-4 bg-white text-teal-700 rounded-xl font-bold hover:bg-teal-50 transition-colors cursor-pointer border-2 border-teal-200">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3.18 23.76c.3.17.64.24.99.2l12.7-7.34-2.75-2.76-10.94 9.9zM.35 1.27C.13 1.6 0 2.03 0 2.57v18.86c0 .54.13.97.35 1.3l.07.07 10.57-10.57v-.25L.42 1.2l-.07.07zM21.94 10.22l-3.04-1.76-3.06 3.07 3.06 3.07 3.06-1.77c.87-.5.87-1.31-.02-1.61zM4.17.24L16.87 7.58l-2.75 2.76L3.18.24C3.48.07 3.87.07 4.17.24z"/>
+                            </svg>
+                            Google Play
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contract UI mockup -->
+                <div class="bg-white rounded-2xl shadow-xl border border-teal-100 p-6 lock-pulse">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="font-heading text-teal-900 text-sm font-bold">내 계약서</span>
+                        <div class="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center">
+                            <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="contract-card p-4 bg-teal-50 border border-teal-200 rounded-xl cursor-pointer">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <p class="font-bold text-teal-900 text-sm">서울 마포구 임대차 계약</p>
+                                    <p class="text-teal-600 text-xs mt-0.5">전세 · 2억 2천만원</p>
+                                </div>
+                                <div class="flex flex-col items-end gap-1">
+                                    <span class="px-2 py-0.5 bg-orange-100 text-orange-600 text-xs font-bold rounded-full">D-45</span>
+                                    <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="mt-2 flex items-center gap-1.5 text-xs text-teal-500">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                                만료: 2026년 4월 15일
+                            </div>
+                        </div>
+
+                        <div class="contract-card p-4 bg-cyan-50 border border-cyan-200 rounded-xl cursor-pointer">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <p class="font-bold text-teal-900 text-sm">인천 부평구 월세 계약</p>
+                                    <p class="text-cyan-600 text-xs mt-0.5">월세 · 보증금 3천 / 월 70만원</p>
+                                </div>
+                                <div class="flex flex-col items-end gap-1">
+                                    <span class="px-2 py-0.5 bg-green-100 text-green-600 text-xs font-bold rounded-full">안전</span>
+                                    <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="mt-2 flex items-center gap-1.5 text-xs text-cyan-500">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                                만료: 2026년 11월 30일
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-teal-700 rounded-xl flex items-center justify-between cursor-pointer hover:bg-teal-600 transition-colors">
+                            <span class="text-white text-sm font-semibold">+ 계약서 추가</span>
+                            <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-24 bg-teal-950">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">핵심 기능</h2>
+                <p class="text-teal-300 max-w-xl mx-auto">계약서 관리에 필요한 모든 기능을 한 앱에</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="p-6 bg-teal-900/50 border border-teal-800 rounded-2xl hover:border-teal-500 transition-colors">
+                    <div class="w-10 h-10 bg-teal-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">암호화 PDF 보관</h3>
+                    <p class="text-teal-300 text-sm leading-relaxed">AES-256 암호화로 계약서 PDF를 안전하게 기기 내 보관합니다</p>
+                </div>
+
+                <div class="p-6 bg-teal-900/50 border border-teal-800 rounded-2xl hover:border-teal-500 transition-colors">
+                    <div class="w-10 h-10 bg-teal-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">만료일 알림</h3>
+                    <p class="text-teal-300 text-sm leading-relaxed">D-90, D-60, D-30, D-7 단계별 만료 알림으로 갱신 시기를 놓치지 마세요</p>
+                </div>
+
+                <div class="p-6 bg-teal-900/50 border border-teal-800 rounded-2xl hover:border-teal-500 transition-colors">
+                    <div class="w-10 h-10 bg-teal-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9zM15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">카메라 스캔</h3>
+                    <p class="text-teal-300 text-sm leading-relaxed">스마트폰 카메라로 종이 계약서를 바로 스캔해 PDF로 변환 저장합니다</p>
+                </div>
+
+                <div class="p-6 bg-teal-900/50 border border-teal-800 rounded-2xl hover:border-teal-500 transition-colors">
+                    <div class="w-10 h-10 bg-teal-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">계약 정보 정리</h3>
+                    <p class="text-teal-300 text-sm leading-relaxed">보증금, 월세, 임대인 정보, 특약 사항 등을 구조화해 빠르게 확인합니다</p>
+                </div>
+
+                <div class="p-6 bg-teal-900/50 border border-teal-800 rounded-2xl hover:border-teal-500 transition-colors">
+                    <div class="w-10 h-10 bg-teal-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">안전한 공유</h3>
+                    <p class="text-teal-300 text-sm leading-relaxed">비밀번호 보호된 링크로 필요한 사람에게만 안전하게 계약서를 공유합니다</p>
+                </div>
+
+                <div class="p-6 bg-teal-900/50 border border-teal-800 rounded-2xl hover:border-teal-500 transition-colors">
+                    <div class="w-10 h-10 bg-teal-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">계약 통계</h3>
+                    <p class="text-teal-300 text-sm leading-relaxed">월세 지출 추이, 보증금 현황 등 내 부동산 계약 데이터를 한눈에 파악합니다</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24 bg-gradient-to-br from-teal-50 to-cyan-50">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold text-teal-900 mb-6">계약서 걱정 없이 살아가세요</h2>
+            <p class="text-teal-600 mb-10 text-lg">무료로 시작하고, 계약서 무제한 보관은 Pro 플랜으로</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-teal-700 text-white rounded-xl font-bold text-lg hover:bg-teal-600 transition-colors cursor-pointer">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98l-.09.06c-.22.15-2.22 1.3-2.19 3.88.03 3.02 2.65 4.03 2.68 4.04l-.04.1zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                    </svg>
+                    App Store
+                </a>
+                <a href="#" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-teal-700 rounded-xl font-bold text-lg hover:bg-teal-50 transition-colors cursor-pointer border-2 border-teal-200">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3.18 23.76c.3.17.64.24.99.2l12.7-7.34-2.75-2.76-10.94 9.9zM.35 1.27C.13 1.6 0 2.03 0 2.57v18.86c0 .54.13.97.35 1.3l.07.07 10.57-10.57v-.25L.42 1.2l-.07.07zM21.94 10.22l-3.04-1.76-3.06 3.07 3.06 3.07 3.06-1.77c.87-.5.87-1.31-.02-1.61zM4.17.24L16.87 7.58l-2.75 2.76L3.18.24C3.48.07 3.87.07 4.17.24z"/>
+                    </svg>
+                    Google Play
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-teal-950 border-t border-teal-900 py-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-7 h-7 bg-teal-500/20 border border-teal-500/30 rounded-lg flex items-center justify-center">
+                        <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <span class="font-heading text-white text-sm font-bold">Keeps</span>
+                </div>
+                <div class="flex gap-6 text-sm">
+                    <a href="/keeps/privacy/" class="text-teal-400 hover:text-white transition-colors cursor-pointer">개인정보처리방침</a>
+                    <a href="/keeps/terms/" class="text-teal-400 hover:text-white transition-colors cursor-pointer">이용약관</a>
+                    <a href="mailto:iyu974895@gmail.com" class="text-teal-400 hover:text-white transition-colors cursor-pointer">지원</a>
+                </div>
+            </div>
+            <div class="mt-6 pt-6 border-t border-teal-900 text-center text-xs text-teal-700">
+                &copy; 2026 Dcode Labs. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

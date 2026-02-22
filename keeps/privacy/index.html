@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인정보처리방침 - Keeps</title>
+    <meta name="description" content="Keeps 앱의 개인정보처리방침입니다.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Noto Sans KR', sans-serif; background: #ffffff; color: #134E4A; -webkit-font-smoothing: antialiased; }
+        h2 { color: #0F766E; margin-top: 2rem; margin-bottom: 0.75rem; font-weight: 700; font-size: 1rem; }
+        p, li { color: #475569; line-height: 1.8; }
+        li { margin-bottom: 0.25rem; }
+        strong { color: #134E4A; }
+        a { color: #0F766E; }
+        a:hover { text-decoration: underline; }
+        .section-box { background: #F0FDFA; border-left: 3px solid #14B8A6; border-radius: 0 0.5rem 0.5rem 0; padding: 1rem 1.25rem; margin: 1rem 0; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.875rem; }
+        th { background: #CCFBF1; color: #0F766E; font-weight: 600; padding: 0.625rem 0.875rem; text-align: left; border: 1px solid #99F6E4; }
+        td { padding: 0.625rem 0.875rem; border: 1px solid #D1FAF5; color: #475569; vertical-align: top; line-height: 1.6; }
+        tr:nth-child(even) td { background: #F0FDFA; }
+    </style>
+</head>
+<body>
+    <header class="border-b py-4 px-6 mb-8" style="border-color: #CCFBF1; background: rgba(255,255,255,0.95);">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="../" class="flex items-center gap-2 hover:opacity-70 transition-opacity text-sm font-medium" style="color:#0F766E">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Keeps 홈
+            </a>
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded-lg flex items-center justify-center" style="background:#0F766E">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                </div>
+                <span class="font-bold text-sm" style="color:#134E4A">Keeps</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-6 pb-20">
+        <div class="mb-8 pb-6 border-b" style="border-color: #CCFBF1">
+            <h1 class="text-3xl font-bold mb-2" style="color:#134E4A">개인정보처리방침</h1>
+            <p class="text-sm" style="color:#6B7280">Keeps 개인정보처리방침 · 시행일: 2026년 2월 22일 · 최종 수정일: 2026년 2월 22일</p>
+        </div>
+
+        <div class="section-box">
+            <p class="text-sm"><strong>이용자의 소중한 계약 정보를 안전하게 보호합니다.</strong> dcode labs(이하 "회사")는 「개인정보 보호법」을 준수하며, Keeps 앱에서 수집하는 개인정보의 처리 방침을 투명하게 공개합니다.</p>
+        </div>
+
+        <h2>제1조 (수집하는 개인정보 항목 및 수집 방법)</h2>
+        <p>회사는 Keeps 서비스 제공을 위해 아래의 정보를 수집합니다.</p>
+        <table>
+            <thead><tr><th>수집 항목</th><th>수집 목적</th><th>보유 기간</th></tr></thead>
+            <tbody>
+                <tr><td>기기 식별자(UUID)</td><td>계정 식별 및 서비스 제공</td><td>앱 삭제 시까지</td></tr>
+                <tr><td>계약서 PDF 파일</td><td>암호화 보관 (기기 내 저장, 서버 미전송)</td><td>이용자 삭제 시까지</td></tr>
+                <tr><td>계약 정보 (보증금, 만료일 등)</td><td>계약 관리 및 알림 발송</td><td>이용자 삭제 시까지</td></tr>
+                <tr><td>푸시 알림 토큰</td><td>만료일 알림 발송</td><td>앱 삭제 또는 알림 비활성화 시</td></tr>
+                <tr><td>결제 정보 (Pro 플랜)</td><td>유료 구독 처리 (Apple/Google 결제 시스템 경유)</td><td>법령에 따른 보존 기간</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-box">
+            <p class="text-sm"><strong>중요:</strong> 이용자의 계약서 PDF 파일은 기기 내에만 AES-256 암호화로 저장됩니다. 회사 서버에는 업로드되지 않으며, 이용자만이 접근 가능합니다.</p>
+        </div>
+
+        <h2>제2조 (개인정보의 이용 목적)</h2>
+        <ul>
+            <li>부동산 계약서 암호화 보관 서비스 제공</li>
+            <li>계약 만료일 사전 알림 발송 (D-90, D-60, D-30, D-7)</li>
+            <li>Pro 플랜 구독 관리</li>
+            <li>앱 오류 분석 및 서비스 개선</li>
+            <li>고객 문의 응대</li>
+        </ul>
+
+        <h2>제3조 (개인정보의 제3자 제공)</h2>
+        <p>회사는 이용자의 사전 동의 없이 개인정보를 제3자에게 제공하지 않습니다. 단, 법령에 의한 요청 또는 이용자 동의가 있는 경우는 예외입니다.</p>
+
+        <h2>제4조 (개인정보 처리 위탁)</h2>
+        <table>
+            <thead><tr><th>수탁업체</th><th>위탁 업무</th><th>보유 기간</th></tr></thead>
+            <tbody>
+                <tr><td>Apple Inc. / Google LLC</td><td>인앱 결제 처리, 푸시 알림 발송</td><td>서비스 제공 기간</td></tr>
+                <tr><td>Firebase (Google LLC)</td><td>앱 오류 분석 (비식별 통계)</td><td>6개월</td></tr>
+            </tbody>
+        </table>
+
+        <h2>제5조 (이용자의 권리)</h2>
+        <p>이용자는 언제든지 다음 권리를 행사할 수 있습니다.</p>
+        <ul>
+            <li>저장된 계약서 및 계약 정보 삭제 (앱 내 직접 삭제 가능)</li>
+            <li>계정 및 데이터 전체 삭제 요청</li>
+            <li>알림 수신 거부 (앱 내 설정)</li>
+        </ul>
+        <p>요청은 이메일(<a href="mailto:iyu974895@gmail.com">iyu974895@gmail.com</a>)로 접수하며 7영업일 이내 처리합니다.</p>
+
+        <h2>제6조 (개인정보의 파기)</h2>
+        <p>계약서 및 계약 정보: 이용자의 앱 내 삭제 즉시 영구 파기<br>
+        푸시 토큰: 알림 비활성화 또는 앱 삭제 시 즉시 파기<br>
+        기타 정보: 목적 달성 또는 서비스 이용 종료 후 파기</p>
+
+        <h2>제7조 (개인정보 보호 조치)</h2>
+        <ul>
+            <li>계약서 PDF: 기기 내 AES-256 암호화 저장</li>
+            <li>앱 접근: 생체인증(Face ID / 지문) 또는 PIN 보호</li>
+            <li>서버 통신: SSL/TLS 암호화 적용</li>
+            <li>서버 미저장: 계약서 파일은 이용자 기기에만 보관</li>
+        </ul>
+
+        <h2>제8조 (개인정보 보호책임자)</h2>
+        <p><strong>책임자</strong>: Dcode Labs 개인정보 보호팀<br>
+        <strong>이메일</strong>: <a href="mailto:iyu974895@gmail.com">iyu974895@gmail.com</a></p>
+
+        <h2>제9조 (개인정보처리방침의 변경)</h2>
+        <p>본 방침은 2026년 2월 22일부터 시행됩니다. 방침 변경 시 앱 공지사항 및 본 페이지를 통해 사전 고지합니다.</p>
+    </main>
+
+    <footer class="border-t py-6 px-6 text-center text-xs text-gray-400" style="border-color: #CCFBF1">
+        &copy; 2026 Dcode Labs. All rights reserved. · <a href="/keeps/" style="color:#0F766E">Keeps 홈</a>
+    </footer>
+</body>
+</html>
