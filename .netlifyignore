@@ -1,0 +1,7 @@
+node_modules/
+package.json
+package-lock.json
+build.mjs
+_tailwind.config.cjs
+_input.css
+*.map

@@ -24,31 +24,12 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Merriweather:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Merriweather:wght@300;400;700&display=swap"></noscript>
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./style.css">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#18181B',
-                        secondary: '#27272A',
-                        accent: '#F8FAFC',
-                        background: '#000000',
-                        text: '#FAFAFA',
-                    },
-                    fontFamily: {
-                        heading: ['Abril Fatface', 'serif'],
-                        body: ['Merriweather', 'serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
+    
     <style>
         body {
             font-family: 'Merriweather', serif;

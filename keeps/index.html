@@ -8,30 +8,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap"></noscript>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#0F766E',
-                        secondary: '#14B8A6',
-                        cta: '#0369A1',
-                        bg: '#F0FDFA',
-                        text: '#134E4A',
-                        dark: '#0F172A',
-                    },
-                    fontFamily: {
-                        heading: ['Cinzel', 'serif'],
-                        body: ['Josefin Sans', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
+    <link rel="stylesheet" href="./style.css">
+        <style>
         * { box-sizing: border-box; }
         body { font-family: 'Josefin Sans', sans-serif; background: #ffffff; color: #134E4A; -webkit-font-smoothing: antialiased; }
         h1, h2, h3, h4 { font-family: 'Cinzel', serif; }
@@ -88,6 +69,7 @@
                         암호화 계약서 보관
                     </div>
 
+                    <p class="text-sm font-bold text-teal-500 mb-2 tracking-wide">Keeps - 부동산 계약서 관리(암호, PDF)</p>
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-teal-900 leading-tight mb-6">
                         소중한 계약서,<br/>
                         <span class="text-teal-600">안전하게</span><br/>
@@ -285,7 +267,10 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                         </svg>
                     </div>
-                    <span class="font-heading text-white text-sm font-bold">Keeps</span>
+                    <div>
+                        <span class="font-heading text-white text-sm font-bold">Keeps</span>
+                        <p class="text-teal-500 text-xs mt-0.5">부동산 계약서 관리(암호, PDF)</p>
+                    </div>
                 </div>
                 <div class="flex gap-6 text-sm">
                     <a href="/keeps/privacy/" class="text-teal-400 hover:text-white transition-colors cursor-pointer">개인정보처리방침</a>

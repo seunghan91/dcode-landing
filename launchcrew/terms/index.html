@@ -8,9 +8,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap"></noscript>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../style.css">
 
     <style>
         * { box-sizing: border-box; }
@@ -34,7 +35,10 @@
                 Launchcrew 홈
             </a>
             <div class="flex items-center gap-2">
-                <img src="../app_logo_1024.png" alt="Launchcrew 로고" class="w-7 h-7 rounded-xl">
+                <picture>
+                  <source srcset="../app_logo_1024.webp" type="image/webp">
+                  <img src="../app_logo_1024.png" alt="Launchcrew 로고" class="w-7 h-7 rounded-xl">
+                </picture>
                 <span class="font-bold text-sm" style="color: #1E1B4B; font-family: 'Outfit', sans-serif;">Launchcrew</span>
             </div>
         </div>

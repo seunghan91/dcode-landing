@@ -17,38 +17,12 @@
     <!-- Google Fonts: Noto Sans KR -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap"></noscript>
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./style.css">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#e63946',
-                        'primary-hover': '#c9303c',
-                        'primary-light': '#fff0f0',
-                        'primary-soft': '#ffccd0',
-                        secondary: '#ffb3ba',
-                        'text-main': '#2d1b1b',
-                        'text-muted': '#8b6b6b',
-                        'border-soft': 'rgba(230, 57, 70, 0.15)',
-                        accent: '#ffd4d8',
-                    },
-                    fontFamily: {
-                        sans: ['Noto Sans KR', 'sans-serif'],
-                    },
-                    borderRadius: {
-                        '2xl': '1rem',
-                        '3xl': '1.5rem',
-                    }
-                }
-            }
-        }
-    </script>
-
+    
     <style>
         * { box-sizing: border-box; }
         body {

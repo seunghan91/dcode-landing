@@ -9,33 +9,13 @@
     <!-- Google Fonts: Outfit + DM Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap"></noscript>
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./style.css">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        heading: ['Outfit', 'sans-serif'],
-                        body: ['DM Sans', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#4F46E5',
-                        'primary-dark': '#3730A3',
-                        'primary-light': '#818CF8',
-                        secondary: '#7C3AED',
-                        accent: '#F97316',
-                        'bg-soft': '#F5F3FF',
-                        dark: '#1E1B4B',
-                    }
-                }
-            }
-        }
-    </script>
-
+    
     <style>
         * { box-sizing: border-box; }
         body { font-family: 'DM Sans', sans-serif; background: #ffffff; color: #1E1B4B; -webkit-font-smoothing: antialiased; }
@@ -189,7 +169,10 @@
                 dcode labs
             </a>
             <div class="flex items-center gap-2.5">
-                <img src="app_logo_1024.png" alt="Launchcrew 로고" class="w-7 h-7 rounded-xl">
+                <picture>
+                  <source srcset="app_logo_1024.webp" type="image/webp">
+                  <img src="app_logo_1024.png" alt="Launchcrew 로고" class="w-7 h-7 rounded-xl">
+                </picture>
                 <span class="font-heading font-bold text-sm text-dark">Launchcrew</span>
             </div>
             <a href="mailto:iyu974895@gmail.com" class="text-sm font-medium text-indigo-600 hover:text-indigo-800 transition-colors cursor-pointer hidden sm:block">문의하기</a>
@@ -204,7 +187,10 @@
                 <!-- Left: Copy -->
                 <div class="text-white pb-12 lg:pb-20">
                     <div class="inline-flex items-center gap-2 glass-card px-4 py-2 mb-6 text-sm font-medium text-indigo-200">
-                        <img src="app_logo_1024.png" alt="" class="w-5 h-5 rounded-lg">
+                        <picture>
+                          <source srcset="app_logo_1024.webp" type="image/webp">
+                          <img src="app_logo_1024.png" alt="" class="w-5 h-5 rounded-lg">
+                        </picture>
                         QA 매칭 플랫폼
                     </div>
 

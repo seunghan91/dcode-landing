@@ -9,32 +9,12 @@
     <!-- Google Fonts - Space Grotesk + DM Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"></noscript>
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./style.css">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#F97316',      // Vibrant Orange
-                        secondary: '#FB923C',    // Light Orange
-                        cta: '#2563EB',          // Trust Blue
-                        background: '#FFF7ED',   // Warm White
-                        text: '#9A3412',         // Deep Orange Brown
-                        dark: '#1F2937',         // Dark Gray
-                    },
-                    fontFamily: {
-                        heading: ['Space Grotesk', 'sans-serif'],
-                        body: ['DM Sans', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
+    
     <style>
         body {
             font-family: 'DM Sans', sans-serif;
@@ -201,7 +181,10 @@
                     <!-- Image: 실제 앱 아이콘 -->
                     <div class="relative h-64 overflow-hidden" style="background: #2a2a2a">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <img src="/unmask/app_icon.png" alt="UNMASK" class="w-28 h-28 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" style="box-shadow: 0 20px 60px rgba(0,0,0,0.5)">
+                            <picture>
+                              <source srcset="/unmask/app_icon.webp" type="image/webp">
+                              <img src="/unmask/app_icon.png" alt="UNMASK" class="w-28 h-28 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" style="box-shadow: 0 20px 60px rgba(0,0,0,0.5)">
+                            </picture>
                         </div>
                         <div class="absolute top-4 right-4 px-3 py-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-bold rounded-lg">iOS · Android</div>
                         <div class="absolute bottom-4 left-4 px-3 py-1 bg-black/50 backdrop-blur-sm text-white text-xs font-semibold rounded-lg">Photography</div>
@@ -238,7 +221,10 @@
                     <!-- Image: 실제 앱 아이콘 -->
                     <div class="relative h-64 overflow-hidden" style="background: #1a1a2e">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <img src="/mbti-luck/app_icon.png" alt="MBTI Luck" class="w-28 h-28 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" style="box-shadow: 0 20px 60px rgba(0,0,0,0.4)">
+                            <picture>
+                              <source srcset="/mbti-luck/app_icon.webp" type="image/webp">
+                              <img src="/mbti-luck/app_icon.png" alt="MBTI Luck" class="w-28 h-28 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" style="box-shadow: 0 20px 60px rgba(0,0,0,0.4)">
+                            </picture>
                         </div>
                         <div class="absolute top-4 right-4 px-3 py-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-bold rounded-lg">iOS · Android</div>
                         <div class="absolute bottom-4 left-4 px-3 py-1 bg-black/40 backdrop-blur-sm text-white text-xs font-semibold rounded-lg">Lifestyle</div>
@@ -272,7 +258,10 @@
                     <!-- Image: 실제 앱 아이콘 -->
                     <div class="relative h-64 overflow-hidden" style="background: #c8dff5">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <img src="/trip-helper/app_icon.png" alt="Trip Helper" class="w-28 h-28 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" style="box-shadow: 0 20px 60px rgba(0,0,0,0.2)">
+                            <picture>
+                              <source srcset="/trip-helper/app_icon.webp" type="image/webp">
+                              <img src="/trip-helper/app_icon.png" alt="Trip Helper" class="w-28 h-28 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" style="box-shadow: 0 20px 60px rgba(0,0,0,0.2)">
+                            </picture>
                         </div>
                         <div class="absolute top-4 right-4 px-3 py-1.5 bg-white/40 backdrop-blur-sm text-gray-700 text-xs font-bold rounded-lg">iOS · Android</div>
                         <div class="absolute bottom-4 left-4 px-3 py-1 bg-white/30 backdrop-blur-sm text-gray-700 text-xs font-semibold rounded-lg">Travel</div>
@@ -310,7 +299,10 @@
                         <div class="absolute bottom-0 right-0 w-32 h-32 bg-teal-300/20 rounded-full blur-2xl"></div>
                         <div class="absolute inset-0 flex items-center justify-center">
                             <!-- 실제 새 앱 아이콘 이미지 -->
-                            <img src="/voiceting/app_icon.png" alt="보이스팅" class="w-28 h-28 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" style="box-shadow: 0 20px 60px rgba(0,0,0,0.3)">
+                            <picture>
+                              <source srcset="/voiceting/app_icon.webp" type="image/webp">
+                              <img src="/voiceting/app_icon.png" alt="보이스팅" class="w-28 h-28 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" style="box-shadow: 0 20px 60px rgba(0,0,0,0.3)">
+                            </picture>
                         </div>
                         <div class="absolute top-4 right-4 px-3 py-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-bold rounded-lg">
                             iOS · Android
@@ -348,7 +340,10 @@
                     <!-- Image: 실제 앱 아이콘 -->
                     <div class="relative h-64 overflow-hidden" style="background: #c8dff5">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <img src="/ai-media-detector/app_icon.png" alt="AI Media Detector" class="w-28 h-28 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" style="box-shadow: 0 20px 60px rgba(0,0,0,0.2)">
+                            <picture>
+                              <source srcset="/ai-media-detector/app_icon.webp" type="image/webp">
+                              <img src="/ai-media-detector/app_icon.png" alt="AI Media Detector" class="w-28 h-28 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" style="box-shadow: 0 20px 60px rgba(0,0,0,0.2)">
+                            </picture>
                         </div>
                         <div class="absolute top-4 right-4 px-3 py-1.5 bg-white/40 backdrop-blur-sm text-gray-700 text-xs font-bold rounded-lg">iOS · Android</div>
                         <div class="absolute bottom-4 left-4 px-3 py-1 bg-white/30 backdrop-blur-sm text-gray-700 text-xs font-semibold rounded-lg">AI · Detection</div>
@@ -374,7 +369,10 @@
                     <!-- Image: 실제 앱 아이콘 -->
                     <div class="relative h-64 overflow-hidden" style="background: #c8dff5">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <img src="/keeps/app_icon.png" alt="Keeps" class="w-28 h-28 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" style="box-shadow: 0 20px 60px rgba(0,0,0,0.2)">
+                            <picture>
+                              <source srcset="/keeps/app_icon.webp" type="image/webp">
+                              <img src="/keeps/app_icon.png" alt="Keeps" class="w-28 h-28 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" style="box-shadow: 0 20px 60px rgba(0,0,0,0.2)">
+                            </picture>
                         </div>
                         <div class="absolute top-4 right-4 px-3 py-1.5 bg-white/40 backdrop-blur-sm text-gray-700 text-xs font-bold rounded-lg">iOS · Android</div>
                         <div class="absolute bottom-4 left-4 px-3 py-1 bg-white/30 backdrop-blur-sm text-gray-700 text-xs font-semibold rounded-lg">Real Estate</div>
@@ -400,7 +398,10 @@
                     <!-- Image: 실제 앱 아이콘 (최신) -->
                     <div class="relative h-64 overflow-hidden" style="background: #c8dff5">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <img src="/launchcrew/app_icon.png" alt="Launchcrew" class="w-28 h-28 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" style="box-shadow: 0 20px 60px rgba(0,0,0,0.2)">
+                            <picture>
+                              <source srcset="/launchcrew/app_icon.webp" type="image/webp">
+                              <img src="/launchcrew/app_icon.png" alt="Launchcrew" class="w-28 h-28 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" style="box-shadow: 0 20px 60px rgba(0,0,0,0.2)">
+                            </picture>
                         </div>
                         <div class="absolute top-4 right-4 px-3 py-1.5 bg-white/40 backdrop-blur-sm text-gray-700 text-xs font-bold rounded-lg">iOS · Android</div>
                         <div class="absolute bottom-4 left-4 px-3 py-1 bg-white/30 backdrop-blur-sm text-gray-700 text-xs font-semibold rounded-lg">Startup</div>
