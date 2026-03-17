@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="쉬운 대진표 - 테니스, 배드민턴 복식 토너먼트를 쉽게 만들고 관리하세요. 실시간 스코어, 대진표, 순위표">
+    <title>쉬운 대진표 - 테니스 / 배드민턴 (복식, 토너먼트)</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap"></noscript>
+
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Josefin Sans', sans-serif; background: #ffffff; color: #7C2D12; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4 { font-family: 'Cinzel', serif; }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        }
+
+        .bracket-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .bracket-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(168,69,32,0.12);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b" style="border-color:#FDBA74">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2 cursor-pointer hover:opacity-70 transition-opacity text-sm" style="color:#C2410C">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 18l-6-6 6-6"/></svg>
+                Dcode Labs
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="#features" class="text-sm hover:opacity-70 transition-opacity cursor-pointer hidden sm:block" style="color:#9A3412">기능</a>
+                <a href="#download" class="px-4 py-2 text-white rounded-lg text-sm font-bold hover:opacity-90 transition-opacity cursor-pointer" style="background:#C2410C">다운로드</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative min-h-screen flex items-center pt-16 overflow-hidden" style="background: linear-gradient(135deg, #FFF7ED, #FFFFFF, #FFFBEB)">
+        <div class="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl" style="background:rgba(194,65,12,0.06)"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full blur-3xl" style="background:rgba(234,88,12,0.06)"></div>
+
+        <div class="relative max-w-6xl mx-auto px-6 py-24 z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Text -->
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-8" style="background:#FED7AA; color:#9A3412">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                        iOS 1.0 제출 준비 중
+                    </div>
+
+                    <p class="text-sm font-bold mb-2 tracking-wide" style="color:#EA580C">Easy Bracket</p>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6" style="color:#7C2D12">
+                        대회 운영,<br/>
+                        <span style="color:#C2410C">쉽게</span><br/>
+                        시작하세요
+                    </h1>
+
+                    <p class="text-lg leading-relaxed mb-10 max-w-lg" style="color:rgba(124,45,18,0.7)">
+                        테니스, 배드민턴 복식 토너먼트를 손쉽게 생성하고 관리.
+                        실시간 대진표, 스코어 입력, 순위표, 코트 배정까지 한 앱에서.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4" id="download">
+                        <a href="#" class="inline-flex items-center justify-center gap-3 px-6 py-4 text-white rounded-xl font-bold hover:opacity-90 transition-opacity cursor-pointer" style="background:#9A3412">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98l-.09.06c-.22.15-2.22 1.3-2.19 3.88.03 3.02 2.65 4.03 2.68 4.04l-.04.1zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            App Store (출시 예정)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bracket UI mockup -->
+                <div class="bg-white rounded-2xl shadow-xl p-6" style="border: 1px solid #FDBA74">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="font-heading text-sm font-bold" style="color:#7C2D12">주말 친선 래더</span>
+                        <span class="px-2 py-0.5 rounded-full text-xs font-bold" style="background:#FEE2E2; color:#DC2626">LIVE</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="bracket-card p-3 rounded-xl cursor-pointer" style="background:#FFF7ED; border:1px solid #FDBA74">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold" style="background:#FED7AA; color:#9A3412">1</span>
+                                    <span class="text-sm font-semibold" style="color:#7C2D12">김승한 / 이지원</span>
+                                </div>
+                                <span class="font-mono text-sm font-bold" style="color:#7C2D12">6 4</span>
+                            </div>
+                        </div>
+                        <div class="bracket-card p-3 rounded-xl cursor-pointer" style="background:#FFFBEB; border:1px solid #FDE68A">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold" style="background:#FEF3C7; color:#92400E">2</span>
+                                    <span class="text-sm" style="color:#78716C">박민호 / 최영수</span>
+                                </div>
+                                <span class="font-mono text-sm" style="color:#A8A29E">3 2</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 border-t" style="border-color:#FED7AA">
+                            <div class="bracket-card p-3 rounded-xl cursor-pointer" style="background:#F0FDF4; border:1px solid #BBF7D0">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold" style="background:#BBF7D0; color:#166534">3</span>
+                                        <span class="text-sm font-semibold" style="color:#166534">정하늘 / 윤서연</span>
+                                    </div>
+                                    <span class="px-2 py-0.5 rounded-full text-xs font-bold" style="background:#D1FAE5; color:#059669">승리</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-3 rounded-xl flex items-center justify-between cursor-pointer hover:opacity-90 transition-opacity" style="background:#C2410C">
+                            <span class="text-white text-sm font-semibold">순위표 보기</span>
+                            <svg class="w-5 h-5 text-orange-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-24" style="background:#431407">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">핵심 기능</h2>
+                <p style="color:#FDBA74" class="max-w-xl mx-auto">대회 운영에 필요한 모든 것을 한 앱에</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="p-6 rounded-2xl hover:border-orange-500 transition-colors" style="background:rgba(124,45,18,0.5); border:1px solid #7C2D12">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(234,88,12,0.2)">
+                        <svg class="w-5 h-5" style="color:#FB923C" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">자동 대진표 생성</h3>
+                    <p class="text-sm leading-relaxed" style="color:#FDBA74">싱글/더블 엘리미네이션 대진표를 참가자 수에 맞게 자동 생성합니다</p>
+                </div>
+
+                <div class="p-6 rounded-2xl hover:border-orange-500 transition-colors" style="background:rgba(124,45,18,0.5); border:1px solid #7C2D12">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(234,88,12,0.2)">
+                        <svg class="w-5 h-5" style="color:#FB923C" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">실시간 스코어</h3>
+                    <p class="text-sm leading-relaxed" style="color:#FDBA74">세트별 점수를 실시간으로 입력하고 참가자 전원이 즉시 확인할 수 있습니다</p>
+                </div>
+
+                <div class="p-6 rounded-2xl hover:border-orange-500 transition-colors" style="background:rgba(124,45,18,0.5); border:1px solid #7C2D12">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(234,88,12,0.2)">
+                        <svg class="w-5 h-5" style="color:#FB923C" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">순위표 / 전적</h3>
+                    <p class="text-sm leading-relaxed" style="color:#FDBA74">승/패/승률 기준 순위표로 참가자 전적을 한눈에 확인합니다</p>
+                </div>
+
+                <div class="p-6 rounded-2xl hover:border-orange-500 transition-colors" style="background:rgba(124,45,18,0.5); border:1px solid #7C2D12">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(234,88,12,0.2)">
+                        <svg class="w-5 h-5" style="color:#FB923C" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"/><line x1="12" y1="3" x2="12" y2="21" stroke-width="2"/><line x1="3" y1="12" x2="21" y2="12" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">코트 배정</h3>
+                    <p class="text-sm leading-relaxed" style="color:#FDBA74">경기별 코트를 배정하고 코트 맵으로 현재 경기 현황을 파악합니다</p>
+                </div>
+
+                <div class="p-6 rounded-2xl hover:border-orange-500 transition-colors" style="background:rgba(124,45,18,0.5); border:1px solid #7C2D12">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(234,88,12,0.2)">
+                        <svg class="w-5 h-5" style="color:#FB923C" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">복식 지원</h3>
+                    <p class="text-sm leading-relaxed" style="color:#FDBA74">2인 1팀 복식 토너먼트를 기본 지원. 단식도 물론 가능합니다</p>
+                </div>
+
+                <div class="p-6 rounded-2xl hover:border-orange-500 transition-colors" style="background:rgba(124,45,18,0.5); border:1px solid #7C2D12">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(234,88,12,0.2)">
+                        <svg class="w-5 h-5" style="color:#FB923C" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">대회 채팅</h3>
+                    <p class="text-sm leading-relaxed" style="color:#FDBA74">참가자 전체 채팅으로 실시간 소통. 경기 일정 공지, 코트 변경 알림 등</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24" style="background: linear-gradient(135deg, #FFF7ED, #FFFBEB)">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-6" style="color:#7C2D12">주말 대회, 이제 쉽게 만드세요</h2>
+            <p class="mb-10 text-lg" style="color:#C2410C">무료로 대회를 만들고 참가자를 초대하세요</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#" class="inline-flex items-center justify-center gap-3 px-8 py-4 text-white rounded-xl font-bold text-lg hover:opacity-90 transition-opacity cursor-pointer" style="background:#9A3412">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98l-.09.06c-.22.15-2.22 1.3-2.19 3.88.03 3.02 2.65 4.03 2.68 4.04l-.04.1zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                    </svg>
+                    App Store (출시 예정)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t py-10" style="background:#431407; border-color:#7C2D12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background:rgba(234,88,12,0.2); border:1px solid rgba(234,88,12,0.3)">
+                        <svg class="w-4 h-4" style="color:#FB923C" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-heading text-white text-sm font-bold">Easy Bracket</span>
+                        <p class="text-xs mt-0.5" style="color:#FB923C">테니스 / 배드민턴 (복식, 토너먼트)</p>
+                    </div>
+                </div>
+                <div class="flex gap-6 text-sm">
+                    <a href="/easy-bracket/privacy/" class="hover:text-white transition-colors cursor-pointer" style="color:#FB923C">개인정보처리방침</a>
+                    <a href="/easy-bracket/terms/" class="hover:text-white transition-colors cursor-pointer" style="color:#FB923C">이용약관</a>
+                    <a href="mailto:iyu974895@gmail.com" class="hover:text-white transition-colors cursor-pointer" style="color:#FB923C">지원</a>
+                </div>
+            </div>
+            <div class="mt-6 pt-6 border-t text-center text-xs" style="border-color:#7C2D12; color:#9A3412">
+                &copy; 2026 Dcode Labs. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
