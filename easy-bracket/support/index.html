@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>고객 지원 - 쉬운 대진표 (Easy Bracket)</title>
-    <meta name="description" content="쉬운 대진표(Easy Bracket) 앱의 고객 지원 페이지입니다. 문의, FAQ, 버그 신고 안내.">
+    <meta name="description" content="쉬운 대진표(Easy Bracket) 앱의 고객 지원 페이지입니다. Customer support for Easy Bracket app.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
     <link rel="stylesheet" href="../style.css">
     <style>
         * { box-sizing: border-box; }
-        body { font-family: 'Noto Sans KR', sans-serif; background: #ffffff; color: #7C2D12; -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background: #ffffff; color: #7C2D12; -webkit-font-smoothing: antialiased; }
         h2 { color: #C2410C; margin-top: 2rem; margin-bottom: 0.75rem; font-weight: 700; font-size: 1.1rem; }
         h3 { color: #7C2D12; margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem; }
         p, li { color: #475569; line-height: 1.8; }
@@ -25,83 +25,203 @@
         .faq-item:last-child { border-bottom: none; }
         .faq-q { font-weight: 600; color: #7C2D12; margin-bottom: 0.5rem; }
         .faq-a { color: #475569; }
+        .lang-toggle { display: inline-flex; border: 1px solid #FDBA74; border-radius: 8px; overflow: hidden; font-size: 0.8rem; }
+        .lang-toggle button { padding: 0.35rem 0.75rem; border: none; cursor: pointer; font-weight: 600; transition: all 0.15s; background: transparent; color: #7C2D12; }
+        .lang-toggle button.active { background: #C2410C; color: #fff; }
+        [data-lang="en"] { display: none; }
+        body.en [data-lang="ko"] { display: none; }
+        body.en [data-lang="en"] { display: revert; }
     </style>
 </head>
 <body>
     <div style="max-width: 720px; margin: 0 auto; padding: 2rem 1.25rem 4rem;">
-        <a href="../" style="display: inline-block; margin-bottom: 1.5rem; font-size: 0.85rem; color: #C2410C; text-decoration: none;">&larr; 쉬운 대진표 홈으로</a>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <a href="../" style="font-size: 0.85rem; color: #C2410C; text-decoration: none;">
+                <span data-lang="ko">&larr; 쉬운 대진표 홈으로</span>
+                <span data-lang="en">&larr; Easy Bracket Home</span>
+            </a>
+            <div class="lang-toggle">
+                <button class="active" onclick="setLang('ko')">한국어</button>
+                <button onclick="setLang('en')">English</button>
+            </div>
+        </div>
 
-        <h1 style="font-size: 1.5rem; font-weight: 700; color: #7C2D12; margin-bottom: 0.5rem;">고객 지원</h1>
-        <p style="color: #94A3B8; font-size: 0.85rem; margin-bottom: 2rem;">쉬운 대진표 (Easy Bracket) 앱 사용 중 궁금한 점이나 문제가 있으시면 아래 방법으로 문의해 주세요.</p>
+        <!-- Title -->
+        <h1 style="font-size: 1.5rem; font-weight: 700; color: #7C2D12; margin-bottom: 0.5rem;">
+            <span data-lang="ko">고객 지원</span>
+            <span data-lang="en">Customer Support</span>
+        </h1>
+        <p style="color: #94A3B8; font-size: 0.85rem; margin-bottom: 2rem;">
+            <span data-lang="ko">쉬운 대진표 (Easy Bracket) 앱 사용 중 궁금한 점이나 문제가 있으시면 아래 방법으로 문의해 주세요.</span>
+            <span data-lang="en">If you have any questions or issues while using Easy Bracket, please contact us through the methods below.</span>
+        </p>
 
-        <h2>문의 방법</h2>
+        <!-- Contact Methods -->
+        <h2>
+            <span data-lang="ko">문의 방법</span>
+            <span data-lang="en">Contact Us</span>
+        </h2>
 
         <div class="support-card">
-            <h3>이메일 문의</h3>
-            <p>버그 신고, 기능 제안, 계정 문제 등 모든 문의를 이메일로 보내주세요.</p>
-            <p><strong>이메일:</strong> <a href="mailto:iyu974895@gmail.com">iyu974895@gmail.com</a></p>
-            <p style="font-size: 0.85rem; color: #94A3B8;">영업일 기준 1~2일 이내에 답변드립니다.</p>
+            <h3>
+                <span data-lang="ko">이메일 문의</span>
+                <span data-lang="en">Email Support</span>
+            </h3>
+            <p>
+                <span data-lang="ko">버그 신고, 기능 제안, 계정 문제 등 모든 문의를 이메일로 보내주세요.</span>
+                <span data-lang="en">Send us an email for bug reports, feature requests, account issues, or any other inquiries.</span>
+            </p>
+            <p><strong><span data-lang="ko">이메일:</span><span data-lang="en">Email:</span></strong> <a href="mailto:iyu974895@gmail.com">iyu974895@gmail.com</a></p>
+            <p style="font-size: 0.85rem; color: #94A3B8;">
+                <span data-lang="ko">영업일 기준 1~2일 이내에 답변드립니다.</span>
+                <span data-lang="en">We respond within 1-2 business days.</span>
+            </p>
         </div>
 
         <div class="support-card">
-            <h3>텔레그램 채널</h3>
-            <p>빠른 피드백이나 실시간 문의는 텔레그램을 이용해 주세요.</p>
-            <p><a href="https://t.me/easy_bracket_feedback" target="_blank" rel="noopener">텔레그램 채널 바로가기</a></p>
+            <h3>
+                <span data-lang="ko">텔레그램 채널</span>
+                <span data-lang="en">Telegram Channel</span>
+            </h3>
+            <p>
+                <span data-lang="ko">빠른 피드백이나 실시간 문의는 텔레그램을 이용해 주세요.</span>
+                <span data-lang="en">For quick feedback or real-time inquiries, use our Telegram channel.</span>
+            </p>
+            <p><a href="https://t.me/easy_bracket_feedback" target="_blank" rel="noopener">
+                <span data-lang="ko">텔레그램 채널 바로가기</span>
+                <span data-lang="en">Open Telegram Channel</span>
+            </a></p>
         </div>
 
         <div class="support-card">
-            <h3>카카오톡 오픈채팅</h3>
-            <p>카카오톡 오픈채팅방에서 다른 운영자들과 소통하고 도움을 받을 수 있습니다.</p>
-            <p><a href="https://open.kakao.com/o/giL66Eli" target="_blank" rel="noopener">카카오톡 오픈채팅 바로가기</a></p>
+            <h3>
+                <span data-lang="ko">카카오톡 오픈채팅</span>
+                <span data-lang="en">KakaoTalk Open Chat</span>
+            </h3>
+            <p>
+                <span data-lang="ko">카카오톡 오픈채팅방에서 다른 운영자들과 소통하고 도움을 받을 수 있습니다.</span>
+                <span data-lang="en">Chat with other organizers and get help in our KakaoTalk open chat room.</span>
+            </p>
+            <p><a href="https://open.kakao.com/o/giL66Eli" target="_blank" rel="noopener">
+                <span data-lang="ko">카카오톡 오픈채팅 바로가기</span>
+                <span data-lang="en">Open KakaoTalk Chat</span>
+            </a></p>
         </div>
 
-        <h2>자주 묻는 질문 (FAQ)</h2>
+        <!-- FAQ -->
+        <h2>
+            <span data-lang="ko">자주 묻는 질문 (FAQ)</span>
+            <span data-lang="en">Frequently Asked Questions</span>
+        </h2>
 
         <div class="faq-item">
-            <p class="faq-q">Q. 대회를 만들려면 어떻게 하나요?</p>
-            <p class="faq-a">앱에 로그인한 후 "대회 만들기" 버튼을 탭하세요. 대회 이름, 참가 인원, 코트 수를 입력하면 바로 생성됩니다. 참가자를 등록한 후 대진표를 자동으로 생성할 수 있습니다.</p>
-        </div>
-
-        <div class="faq-item">
-            <p class="faq-q">Q. 참가자는 어떻게 등록하나요?</p>
-            <p class="faq-a">운영자가 직접 이름을 입력하거나, 클럽 멤버 목록에서 선택하거나, 참가 코드를 공유하여 참가자가 직접 등록할 수 있습니다.</p>
-        </div>
-
-        <div class="faq-item">
-            <p class="faq-q">Q. 복식(더블스) 대회를 운영할 수 있나요?</p>
-            <p class="faq-a">네, 단식과 복식 모두 지원합니다. 대회 설정에서 "복식"을 선택하면 2인 1조로 매칭이 자동 생성됩니다. 라운드 로빈과 자유 모드에서는 파트너/상대 조합을 최대한 공평하게 돌려줍니다.</p>
-        </div>
-
-        <div class="faq-item">
-            <p class="faq-q">Q. 점수는 누가 입력하나요?</p>
-            <p class="faq-a">운영자, 스태프, 또는 경기 참가자가 직접 입력할 수 있습니다. QR 코드를 이용하면 게스트도 코트에서 바로 점수를 입력할 수 있습니다.</p>
-        </div>
-
-        <div class="faq-item">
-            <p class="faq-q">Q. 앱이 무료인가요?</p>
-            <p class="faq-a">네, 베타 기간 동안 모든 기능이 무료입니다. 향후 프리미엄 기능이 추가될 수 있으나, 기본 대회 운영 기능은 항상 무료로 제공됩니다.</p>
-        </div>
-
-        <div class="faq-item">
-            <p class="faq-q">Q. 앱에서 오류가 발생했어요.</p>
-            <p class="faq-a">죄송합니다. 오류 발생 시 이메일(<a href="mailto:iyu974895@gmail.com">iyu974895@gmail.com</a>)로 스크린샷과 함께 상황을 알려주시면 빠르게 수정하겠습니다. 앱 내 피드백 버튼을 이용하실 수도 있습니다.</p>
+            <p class="faq-q">
+                <span data-lang="ko">Q. 대회를 만들려면 어떻게 하나요?</span>
+                <span data-lang="en">Q. How do I create a tournament?</span>
+            </p>
+            <p class="faq-a">
+                <span data-lang="ko">앱에 로그인한 후 "대회 만들기" 버튼을 탭하세요. 대회 이름, 참가 인원, 코트 수를 입력하면 바로 생성됩니다. 참가자를 등록한 후 대진표를 자동으로 생성할 수 있습니다.</span>
+                <span data-lang="en">After logging in, tap "Create Tournament." Enter the tournament name, number of participants, and courts. Once players are registered, you can auto-generate the bracket.</span>
+            </p>
         </div>
 
         <div class="faq-item">
-            <p class="faq-q">Q. 계정을 삭제하고 싶어요.</p>
-            <p class="faq-a">이메일(<a href="mailto:iyu974895@gmail.com">iyu974895@gmail.com</a>)로 계정 삭제를 요청해 주세요. 요청 후 7일 이내에 처리됩니다.</p>
+            <p class="faq-q">
+                <span data-lang="ko">Q. 참가자는 어떻게 등록하나요?</span>
+                <span data-lang="en">Q. How do I register players?</span>
+            </p>
+            <p class="faq-a">
+                <span data-lang="ko">운영자가 직접 이름을 입력하거나, 클럽 멤버 목록에서 선택하거나, 참가 코드를 공유하여 참가자가 직접 등록할 수 있습니다.</span>
+                <span data-lang="en">Organizers can type names directly, select from club members, or share an entry code so players can register themselves.</span>
+            </p>
         </div>
 
-        <h2>앱 정보</h2>
+        <div class="faq-item">
+            <p class="faq-q">
+                <span data-lang="ko">Q. 복식(더블스) 대회를 운영할 수 있나요?</span>
+                <span data-lang="en">Q. Can I run doubles tournaments?</span>
+            </p>
+            <p class="faq-a">
+                <span data-lang="ko">네, 단식과 복식 모두 지원합니다. 대회 설정에서 "복식"을 선택하면 2인 1조로 매칭이 자동 생성됩니다. 라운드 로빈과 자유 모드에서는 파트너/상대 조합을 최대한 공평하게 돌려줍니다.</span>
+                <span data-lang="en">Yes, both singles and doubles are supported. Select "Doubles" in tournament settings for automatic 2v2 matchmaking. In Round Robin and Free Play modes, partner/opponent combinations are rotated as fairly as possible.</span>
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-q">
+                <span data-lang="ko">Q. 점수는 누가 입력하나요?</span>
+                <span data-lang="en">Q. Who can enter scores?</span>
+            </p>
+            <p class="faq-a">
+                <span data-lang="ko">운영자, 스태프, 또는 경기 참가자가 직접 입력할 수 있습니다. QR 코드를 이용하면 게스트도 코트에서 바로 점수를 입력할 수 있습니다.</span>
+                <span data-lang="en">Organizers, staff, or match participants can enter scores. Guests can also enter scores directly at the court using a QR code.</span>
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-q">
+                <span data-lang="ko">Q. 앱이 무료인가요?</span>
+                <span data-lang="en">Q. Is the app free?</span>
+            </p>
+            <p class="faq-a">
+                <span data-lang="ko">네, 베타 기간 동안 모든 기능이 무료입니다. 향후 프리미엄 기능이 추가될 수 있으나, 기본 대회 운영 기능은 항상 무료로 제공됩니다.</span>
+                <span data-lang="en">Yes, all features are free during the beta period. Premium features may be added later, but basic tournament management will always be free.</span>
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-q">
+                <span data-lang="ko">Q. 앱에서 오류가 발생했어요.</span>
+                <span data-lang="en">Q. I found a bug in the app.</span>
+            </p>
+            <p class="faq-a">
+                <span data-lang="ko">죄송합니다. 오류 발생 시 이메일(<a href="mailto:iyu974895@gmail.com">iyu974895@gmail.com</a>)로 스크린샷과 함께 상황을 알려주시면 빠르게 수정하겠습니다. 앱 내 피드백 버튼을 이용하실 수도 있습니다.</span>
+                <span data-lang="en">We're sorry about that. Please email us at <a href="mailto:iyu974895@gmail.com">iyu974895@gmail.com</a> with a screenshot and description, and we'll fix it promptly. You can also use the in-app feedback button.</span>
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-q">
+                <span data-lang="ko">Q. 계정을 삭제하고 싶어요.</span>
+                <span data-lang="en">Q. I want to delete my account.</span>
+            </p>
+            <p class="faq-a">
+                <span data-lang="ko">이메일(<a href="mailto:iyu974895@gmail.com">iyu974895@gmail.com</a>)로 계정 삭제를 요청해 주세요. 요청 후 7일 이내에 처리됩니다.</span>
+                <span data-lang="en">Please email <a href="mailto:iyu974895@gmail.com">iyu974895@gmail.com</a> to request account deletion. We will process your request within 7 days.</span>
+            </p>
+        </div>
+
+        <!-- App Info -->
+        <h2>
+            <span data-lang="ko">앱 정보</span>
+            <span data-lang="en">App Information</span>
+        </h2>
         <ul>
-            <li><strong>앱 이름:</strong> 쉬운 대진표 (Easy Bracket)</li>
-            <li><strong>개발사:</strong> Dcode Labs</li>
-            <li><strong>이메일:</strong> <a href="mailto:iyu974895@gmail.com">iyu974895@gmail.com</a></li>
-            <li><strong>개인정보처리방침:</strong> <a href="../privacy/">보기</a></li>
-            <li><strong>이용약관:</strong> <a href="../terms/">보기</a></li>
+            <li><strong><span data-lang="ko">앱 이름:</span><span data-lang="en">App Name:</span></strong> <span data-lang="ko">쉬운 대진표 (Easy Bracket)</span><span data-lang="en">Easy Bracket</span></li>
+            <li><strong><span data-lang="ko">개발사:</span><span data-lang="en">Developer:</span></strong> Dcode Labs</li>
+            <li><strong><span data-lang="ko">이메일:</span><span data-lang="en">Email:</span></strong> <a href="mailto:iyu974895@gmail.com">iyu974895@gmail.com</a></li>
+            <li><strong><span data-lang="ko">개인정보처리방침:</span><span data-lang="en">Privacy Policy:</span></strong> <a href="../privacy/"><span data-lang="ko">보기</span><span data-lang="en">View</span></a></li>
+            <li><strong><span data-lang="ko">이용약관:</span><span data-lang="en">Terms of Service:</span></strong> <a href="../terms/"><span data-lang="ko">보기</span><span data-lang="en">View</span></a></li>
         </ul>
 
         <p style="margin-top: 3rem; font-size: 0.8rem; color: #94A3B8; text-align: center;">&copy; 2026 Dcode Labs. All rights reserved.</p>
     </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.classList.toggle('en', lang === 'en');
+            document.documentElement.lang = lang;
+            document.querySelectorAll('.lang-toggle button').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent.includes(lang === 'en' ? 'English' : '한국어'));
+            });
+            try { localStorage.setItem('support-lang', lang); } catch(e) {}
+        }
+        // Restore saved preference or detect browser language
+        try {
+            var saved = localStorage.getItem('support-lang');
+            if (saved) { setLang(saved); }
+            else if (!navigator.language.startsWith('ko')) { setLang('en'); }
+        } catch(e) {}
+    </script>
 </body>
 </html>
